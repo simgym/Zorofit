@@ -18,14 +18,7 @@ import UserProfile from "./pages/UserProfile";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-// remove the links from main Navigation and place in origrams
-// Delete Front component
-// create better UI for PROGRAMS
-// IMPROVE UI OF EXERCISES
 // ADD YOUTUBE API FOR EXERCISE VIDEOS
-
-// whenever I click on the Link in programs section the Logo sign starts forming again
-// fix that it should only form once when website is opened not after that
 
 function App() {
   let it = 0;
