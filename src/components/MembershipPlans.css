@@ -1,0 +1,263 @@
+.all-plans {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5%;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  margin: 0;
+  border: 1px solid white;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.basic-plan {
+  margin-bottom: 1%;
+  border: 1px solid white;
+  width: auto;
+  height: 45vh;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-right: 2%;
+}
+.pro-plan {
+  margin-bottom: 1%;
+  border: 1px solid white;
+  width: auto;
+  height: 45vh;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 2%;
+}
+.premium-plan {
+  background: radial-gradient(
+    circle at top right,
+    #91b200,
+    #8bb200,
+    #45ac01,
+    #67f34b
+  );
+  width: auto;
+  height: 45vh;
+  padding: 2%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.plan-details ul {
+  list-style-type: none;
+  font-size: 1vw;
+}
+.basic-plan-logo {
+  font-size: 3vw;
+  margin-left: 10%;
+}
+.pro-plan-logo {
+  font-size: 3vw;
+}
+.premium-plan-logo {
+  font-size: 3vw;
+}
+.membership-heading {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2vw;
+}
+.plan-details ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.plan-details p {
+  font-family: "Mukta", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.2vw;
+}
+.plan-details h1 {
+  font-family: "Oxygen", sans-serif;
+}
+.basic-plan .plan-details .plan-links {
+  margin-left: 6%;
+  background-color: black;
+}
+.basic-plan .plan-details .plan-links a {
+  color: white;
+}
+.pro-plan .plan-details .plan-links {
+  margin-left: 6%;
+  background-color: black;
+}
+.pro-plan .plan-details .plan-links a {
+  color: white;
+}
+.plan-links {
+  border: 1px solid black;
+  width: 100%;
+  align-items: center;
+}
+.premium-plan .plan-details .plan-links {
+  background-color: white;
+  border: none;
+}
+.premium-plan .plan-details .plan-links a {
+  color: black;
+}
+
+@media (max-width: 426px) {
+  .membership-heading {
+    font-size: 6vw;
+  }
+  .all-plans {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0%;
+    border: none;
+  }
+  .basic-plan-logo {
+    font-size: 10vw;
+  }
+  .plan-details ul {
+    font-size: 3vw;
+  }
+
+  .basic-plan {
+    margin-bottom: 1%;
+
+    width: auto;
+    height: 42vh;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .pro-plan {
+    margin-bottom: 1%;
+
+    width: auto;
+    height: 42vh;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .premium-plan {
+    background: radial-gradient(
+      circle at top right,
+      #91b200,
+      #8bb200,
+      #45ac01,
+      #67f34b
+    );
+    width: auto;
+    height: 42vh;
+    padding: 2%;
+    padding-bottom: 6%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .basic-plan-logo {
+    font-size: 10vw;
+    margin-left: 0%;
+  }
+  .pro-plan-logo {
+    font-size: 10vw;
+  }
+  .premium-plan-logo {
+    font-size: 10vw;
+  }
+  .plan-details p {
+    font-size: 5vw;
+  }
+  .premium-plan .plan-details ul {
+    margin-left: 19%;
+  }
+  .premium-plan .plan-details .plan-links {
+    width: 58%;
+    margin-left: 19vw;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .membership-heading {
+    font-size: 6vw;
+  }
+  .basic-plan {
+    margin-bottom: 1%;
+
+    width: 20vw;
+    height: 40vh;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .pro-plan {
+    margin-bottom: 1%;
+
+    width: 20vw;
+    height: 40vh;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .premium-plan {
+    background: radial-gradient(
+      circle at top right,
+      #91b200,
+      #8bb200,
+      #45ac01,
+      #67f34b
+    );
+    width: 20vw;
+    height: 40vh;
+    padding: 2%;
+    padding-bottom: 6%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .basic-plan-logo {
+    font-size: 3vw;
+    margin-left: 0%;
+  }
+  .pro-plan-logo {
+    font-size: 3vw;
+  }
+  .premium-plan-logo {
+    font-size: 3vw;
+  }
+  .plan-details p {
+    font-size: 2vw;
+  }
+  .plan-details ul {
+    padding: 2vw;
+  }
+  .premium-plan .plan-details .plan-links {
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .membership-heading {
+    font-size: 3vw;
+  }
+}

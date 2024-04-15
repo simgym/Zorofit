@@ -1,0 +1,30 @@
+.example {
+  stroke: #3de01c;
+  margin-left: 0%;
+  position: absolute;
+  left: 8%;
+  top: 30%;
+}
+
+/*for tabs*/
+@media (min-width: 768px) and (max-width: 991px) {
+  .example {
+    top: 32%;
+    width: 80%;
+  }
+}
+
+/* CSS for Mobiles */
+@media (max-width: 767px) {
+  .example {
+    top: 30%;
+    width: 80%;
+  }
+}
+/*CSS for Desktops */
+@media (min-width: 992px) {
+  .example {
+    top: 32%;
+    width: 80%;
+  }
+}

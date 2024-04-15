@@ -1,0 +1,23 @@
+.signout {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10%;
+  z-index: 2;
+}
+.signout-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10%;
+}
+.signout-buttons button {
+  color: black;
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+}
+.signout-buttons button:hover {
+  background-color: grey;
+}

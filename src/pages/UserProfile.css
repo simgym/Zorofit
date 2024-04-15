@@ -1,0 +1,12 @@
+.user-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid white;
+}
+.top-panel ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-between;
+}

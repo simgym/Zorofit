@@ -1,0 +1,290 @@
+.parameter-wrapper {
+  width: 0%;
+  z-index: 2;
+}
+.exercise-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+  margin-top: 100px;
+}
+.muscle-wrapper {
+  background-color: #3de01c;
+  padding: 20px;
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px #0f3907;
+  z-index: 2;
+}
+.muscle-wrapper option {
+  background-color: rgb(210, 210, 210);
+  padding: 20px;
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px #0f3907;
+  z-index: 2;
+}
+.muscle-wrapper li:hover {
+  background-color: #2ea915;
+}
+
+.exercise-namuent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+.exercise-namuent h4 {
+  color: #3de01c;
+  font-family: "Oxygen", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.exercise-details {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.exercise-details-heading p {
+  font-family: "Alice", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2vw;
+}
+.exercise-dity {
+  display: flex;
+  flex-direction: column;
+}
+.exercise-dity h4 {
+  color: #3de01c;
+  font-family: "Oxygen", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+.exercise-content-item {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.exercise-content-item button {
+  background-color: transparent;
+  border: 1px solid greenyellow;
+  width: 10%;
+  padding-bottom: 1.3vh;
+  font-weight: 500;
+  font-size: larger;
+  z-index: 2;
+}
+.exercise-content-item button:hover {
+  border: 1px solid black;
+  background: radial-gradient(
+    circle at top right,
+    #c4c401,
+    #45ac01,
+    #35c219,
+    #188901
+  );
+  color: #191919;
+}
+/* SHIMMER WILL BE APPLIED ON THIS*/
+.exercise-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  height: 100%;
+  width: 80em;
+}
+
+.instructions {
+  width: 70%;
+}
+.instructions h4 {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1vw;
+}
+.instructions p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.85vw;
+}
+.exercise-form {
+  width: 30%;
+  /* border: 1px solid white;
+  background-color: grey; */
+  height: 100%;
+}
+.instruction-videos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid white; */
+}
+.instruction-videos img {
+  width: 15vw;
+  height: auto;
+  /* border: 1px solid white; */
+}
+/* CSS for Desktops */
+
+@media (min-width: 992px) {
+  .parameter-wrapper {
+    margin-right: 100px;
+  }
+  .exercise-namuent {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2%;
+  }
+  .exercise-details-heading p {
+    font-size: 3vw;
+  }
+  .muscle-equipment,
+  .exercise-dity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-left: 2vw;
+    padding-right: 2vw;
+    gap: 10%;
+  }
+  .exercise-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 1vw;
+  }
+  .exercise-content {
+    width: 100%;
+  }
+  .exercise-content-item {
+    width: 75vw;
+    height: auto;
+  }
+  .exercise-namuent {
+    font-size: 1vw;
+  }
+  .instructions h4 {
+    font-size: 1.5vw;
+  }
+}
+
+/* CSS for Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  .parameter-wrapper {
+    margin-right: 100px;
+  }
+  .exercise-namuent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2%;
+  }
+  .exercise-details-heading p {
+    font-size: 5vw;
+  }
+  .muscle-equipment,
+  .exercise-dity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding-left: 2vw;
+    padding-right: 2vw;
+    gap: 10%;
+  }
+  .exercise-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 1.5vw;
+  }
+  .exercise-content {
+    width: 100%;
+  }
+  .exercise-content-item {
+    width: 75vw;
+    height: auto;
+  }
+  .exercise-namuent {
+    font-size: 2vw;
+  }
+  .instructions h4 {
+    font-size: 2.5vw;
+  }
+  .instructions p {
+    font-size: 1.5vw;
+  }
+  .exercise-content-item button {
+    width: 10%;
+    padding-bottom: 1.3vh;
+    padding-top: 0.8vh;
+    font-weight: 500;
+  }
+}
+
+/* CSS for Mobiles */
+@media (max-width: 767px) {
+  .parameter-wrapper {
+    margin-right: 100px;
+  }
+  .exercise-namuent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2%;
+  }
+  .exercise-details-heading p {
+    font-size: 7vw;
+  }
+  .muscle-equipment,
+  .exercise-dity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding-left: 2vw;
+    padding-right: 2vw;
+    gap: 10%;
+  }
+  .exercise-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 2vw;
+  }
+  .exercise-content {
+    width: 100%;
+  }
+  .exercise-content-item {
+    width: 75vw;
+  }
+  .exercise-namuent {
+    font-size: 2vw;
+  }
+  .instructions h4 {
+    font-size: 2.5vw;
+  }
+  .instructions p {
+    font-size: 2vw;
+  }
+  .exercise-content-item button {
+    width: 100%;
+    padding-bottom: 1.3vh;
+    padding-top: 0.8vh;
+    font-weight: 500;
+  }
+}
