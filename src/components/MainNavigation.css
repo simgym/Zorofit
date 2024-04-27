@@ -18,7 +18,6 @@
 }
 .nav-content-wrapper a {
   color: black;
-
   border-radius: 8%;
   font-family: "Mukta", sans-serif;
   font-weight: 500;
@@ -114,6 +113,11 @@
     width: 100%;
     height: auto;
   }
+  .nav-item p {
+    font-weight: bold;
+    font-size: 100%;
+    cursor: pointer;
+  }
 }
 
 /* CSS for Mobiles */
@@ -127,11 +131,17 @@
   }
   .nav-content-wrapper a {
     padding: 5%;
+    padding-top: 25%;
     padding-left: 60%;
     padding-right: 30%;
-    font-size: 2.3vw;
+    font-size: 2.8vw;
     width: 100%;
     height: auto;
+  }
+  .nav-item p {
+    font-weight: bold;
+    font-size: 80%;
+    cursor: pointer;
   }
 }
 
@@ -151,5 +161,10 @@
     font-size: 1vw;
     width: 100%;
     height: auto;
+  }
+  .nav-item p {
+    font-weight: bold;
+    font-size: 100%;
+    cursor: pointer;
   }
 }

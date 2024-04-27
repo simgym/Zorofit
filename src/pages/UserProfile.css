@@ -1,10 +1,17 @@
 .user-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
+}
+.left-panel {
+  flex: 1;
   border: 1px solid white;
 }
-.top-panel ul {
+.right-panel {
+  flex: 3;
+  border: 1px solid rgb(145, 45, 45);
+}
+.left-panel ul {
   display: flex;
   flex-direction: row;
   list-style: none;

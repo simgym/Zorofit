@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import "./Logo.css";
 
+// make changes for media queries as not visible for some phones like iphone SE and 13
+
 const svgVariants = {
   initial: { scale: 1, x: 0, y: 0 },
   animate: {

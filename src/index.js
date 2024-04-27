@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // import { getDatabase } from "firebase/database";
 
@@ -8,8 +9,21 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+console.log(import.meta.env.VITE_FIREBASE_API);
+
+let firebase_api_key;
+
+if (import.meta.env.MODE === "development") {
+  firebase_api_key = "AIzaSyC3J5Geb4SOlUczXxkY58URhUrvvIat9XU";
+} else {
+  firebase_api_key = import.meta.env.VITE_FIREBASE_API;
+}
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC3J5Geb4SOlUczXxkY58URhUrvvIat9XU",
+  // apiKey: "AIzaSyC3J5Geb4SOlUczXxkY58URhUrvvIat9XU",
+
+  // apiKey: import.meta.env.VITE_FIREBASE_API,
+  apiKey: firebase_api_key,
   authDomain: "zorofit-5beb9.firebaseapp.com",
   projectId: "zorofit-5beb9",
   storageBucket: "zorofit-5beb9.appspot.com",
@@ -44,4 +58,4 @@ export const signInWithGoogle = async () => {
   }
 };
 
-// export const db = getDatabase(app);
+export const db = getFirestore(app);

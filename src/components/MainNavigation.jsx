@@ -23,6 +23,8 @@ import "./MainNavigation.css";
 // only so can't use in exercises and login pages so apply condition
 // for ref to only work when user on front pages only
 
+// change UI of Login link as it is not cnetre aligned in media queries also improve padding in it
+
 const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
   let it = 0;
   console.log("scrollToSection prop in MainNavigation:", scrollToSection, ++it);

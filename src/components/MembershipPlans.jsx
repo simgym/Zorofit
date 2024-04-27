@@ -35,6 +35,12 @@ const MembershipPlans = () => {
               <li>
                 <BsCheck2Circle /> Performance Tracker
               </li>
+              <li style={{ color: "white" }}>
+                <BsCheck2Circle /> Workout Planner
+              </li>
+              <li style={{ color: "white" }}>
+                <BsCheck2Circle /> Zoro Buddy
+              </li>
             </ul>
             <div className="plan-links">
               <Link>Join now</Link>
@@ -91,6 +97,9 @@ const MembershipPlans = () => {
               </li>
               <li>
                 <BsCheck2Circle /> Workout Planner
+              </li>
+              <li style={{ color: "white" }}>
+                <BsCheck2Circle /> Zoro Buddy
               </li>
             </ul>
             <div className="plan-links">

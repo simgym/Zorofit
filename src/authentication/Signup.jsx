@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 
 const Signup = () => {
   const [signupEmail, setSignupEmail] = useState("");
-  const [signupPassword, setSignupPassword] = useState(0);
+  const [signupPassword, setSignupPassword] = useState("");
   const [uid, setUid] = useState("");
   const [error, setError] = useState(null);
   const [displayError, setDisplayError] = useState("");

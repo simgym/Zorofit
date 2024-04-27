@@ -38,7 +38,7 @@ const UserProfile = () => {
 
   return (
     <div className="user-wrapper">
-      <div className="top-panel">
+      <div className="left-panel">
         <ul>
           <li onClick={workoutHandler}>
             <p>Workout Planner</p>
@@ -54,30 +54,32 @@ const UserProfile = () => {
           </li>
         </ul>
       </div>
-      <div className="bottom-panel"></div>
-      <div>
-        {plannerIsActve &&
-          !trainerIsActive &&
-          !performanceIsActive &&
-          !buddyIsActive && <WorkoutPlanner />}
-      </div>
-      <div>
-        {!plannerIsActve &&
-          !trainerIsActive &&
-          performanceIsActive &&
-          !buddyIsActive && <PerformanceTracker />}
-      </div>
-      <div>
-        {!plannerIsActve &&
-          trainerIsActive &&
-          !performanceIsActive &&
-          !buddyIsActive && <TrainerPlus />}
-      </div>
-      <div>
-        {!plannerIsActve &&
-          !trainerIsActive &&
-          !performanceIsActive &&
-          buddyIsActive && <ZoroBuddy />}
+      <div className="right-panel">
+        {" "}
+        <div>
+          {plannerIsActve &&
+            !trainerIsActive &&
+            !performanceIsActive &&
+            !buddyIsActive && <WorkoutPlanner />}
+        </div>
+        <div>
+          {!plannerIsActve &&
+            !trainerIsActive &&
+            performanceIsActive &&
+            !buddyIsActive && <PerformanceTracker />}
+        </div>
+        <div>
+          {!plannerIsActve &&
+            trainerIsActive &&
+            !performanceIsActive &&
+            !buddyIsActive && <TrainerPlus />}
+        </div>
+        <div>
+          {!plannerIsActve &&
+            !trainerIsActive &&
+            !performanceIsActive &&
+            buddyIsActive && <ZoroBuddy />}
+        </div>
       </div>
     </div>
   );

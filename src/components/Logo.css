@@ -4,12 +4,13 @@
   position: absolute;
   left: 8%;
   top: 30%;
+  z-index: 2;
 }
 
 /*for tabs*/
 @media (min-width: 768px) and (max-width: 991px) {
   .example {
-    top: 32%;
+    top: 42.4%;
     width: 80%;
   }
 }
@@ -17,14 +18,14 @@
 /* CSS for Mobiles */
 @media (max-width: 767px) {
   .example {
-    top: 30%;
+    top: 38.3%;
     width: 80%;
   }
 }
 /*CSS for Desktops */
 @media (min-width: 992px) {
   .example {
-    top: 32%;
+    top: 43%;
     width: 80%;
   }
 }

@@ -102,8 +102,9 @@
   color: white;
 }
 .plan-links {
-  border: 1px solid black;
+  border: 1px solid rgb(0, 0, 0);
   width: 100%;
+  height: auto;
   align-items: center;
 }
 .premium-plan .plan-details .plan-links {
@@ -135,7 +136,7 @@
     margin-bottom: 1%;
 
     width: auto;
-    height: 42vh;
+    height: 60vh;
     background-color: white;
     color: black;
     display: flex;
@@ -147,7 +148,7 @@
     margin-bottom: 1%;
 
     width: auto;
-    height: 42vh;
+    height: 60vh;
     background-color: white;
     color: black;
     display: flex;
@@ -164,7 +165,7 @@
       #67f34b
     );
     width: auto;
-    height: 42vh;
+    height: 63vh;
     padding: 2%;
     padding-bottom: 6%;
     flex-direction: column;
@@ -190,17 +191,18 @@
   .premium-plan .plan-details .plan-links {
     width: 58%;
     margin-left: 19vw;
+    margin-top: 8.5vh;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 427px) and (max-width: 991px) {
   .membership-heading {
     font-size: 6vw;
   }
+
   .basic-plan {
     margin-bottom: 1%;
-
     width: 20vw;
-    height: 40vh;
+    height: 55vh;
     background-color: white;
     color: black;
     display: flex;
@@ -212,7 +214,7 @@
     margin-bottom: 1%;
 
     width: 20vw;
-    height: 40vh;
+    height: 55vh;
     background-color: white;
     color: black;
     display: flex;
@@ -229,7 +231,7 @@
       #67f34b
     );
     width: 20vw;
-    height: 40vh;
+    height: 52vh;
     padding: 2%;
     padding-bottom: 6%;
     flex-direction: column;
@@ -244,6 +246,7 @@
     font-size: 3vw;
   }
   .premium-plan-logo {
+    margin-top: 60%;
     font-size: 3vw;
   }
   .plan-details p {
@@ -252,6 +255,11 @@
   .plan-details ul {
     padding: 2vw;
   }
+  .pro-plan .plan-details .plan-links,
+  .basic-plan .plan-details .plan-links {
+    margin-left: 0.5vw;
+  }
+
   .premium-plan .plan-details .plan-links {
     width: 100%;
   }
@@ -259,5 +267,48 @@
 @media (min-width: 992px) {
   .membership-heading {
     font-size: 3vw;
+  }
+  .all-plans {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  .basic-plan {
+    margin-bottom: 1%;
+    width: 20vw;
+    height: 55vh;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .pro-plan {
+    margin-bottom: 1%;
+
+    width: 20vw;
+    height: 55vh;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .premium-plan {
+    background: radial-gradient(
+      circle at top right,
+      #91b200,
+      #8bb200,
+      #45ac01,
+      #67f34b
+    );
+    width: 20vw;
+    height: 52vh;
+    padding: 2%;
+    padding-bottom: 6%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
