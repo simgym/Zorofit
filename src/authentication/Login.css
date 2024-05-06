@@ -1,4 +1,4 @@
-.login-wrapper {
+/* .login-wrapper {
   background-image: url(../assets/4.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -16,7 +16,7 @@
 
 .login-wrapper form {
   border: 2px solid white;
-  position: absolute;
+  position: relative;
   left: -10%;
   top: 20%;
   height: 50%;
@@ -55,30 +55,166 @@
   color: black;
   width: 76%;
   margin-left: 2%;
-}
+} */
 
 /* CSS for Desktops */
 
-@media (min-width: 992px) {
-}
+/* @media (min-width: 992px) {
+} */
 
 /* CSS for Tablets */
-@media (min-width: 768px) and (max-width: 991px) {
-}
+/* @media (min-width: 768px) and (max-width: 991px) {
+} */
 
 /* CSS for Mobiles */
-@media (max-width: 767px) {
+/* CSS for Mobiles */
+/* @media (max-width: 767px) {
+  .login-wrapper {
+    position: relative;
+    background-image: url(../assets/4.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+  }
+
   .login-wrapper form {
-    height: 100%;
-    width: auto;
+    position: relative;
+    width: 80%;
+    margin: 20% auto 0;
+    padding: 10% 0;
+    border: 2px solid white;
     color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 10%;
-    padding-top: 10%;
-    padding-bottom: 0%;
-    z-index: 2;
+  }
+
+  .login-wrapper form input {
+    width: 90%;
+
+    font-size: large;
+    border: none;
+    border-bottom: 1px white solid;
+    background-color: transparent;
+  }
+
+  .login-wrapper button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3de01c;
+    color: black;
+  }
+
+  .login-wrapper button:hover {
+    background-color: #2ea915;
+  }
+} */
+.login-wrapper {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid red; */
+  width: 100%;
+  justify-content: left;
+}
+.login-wrapper form {
+  /* border: 2px solid #3de01c; */
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  padding-top: 20%;
+  padding-bottom: 5%;
+  z-index: 2;
+  width: 100%;
+  flex: 1;
+  justify-content: flex-start;
+}
+.login-wrapper form h2 {
+  /* border: 1px solid pink; */
+  margin-bottom: 15%;
+}
+.login-input-wrapper {
+  /* border: 1px solid green; */
+  margin-bottom: 10%;
+}
+.login-wrapper form input {
+  width: 90%;
+  margin-bottom: 5%;
+
+  font-size: large;
+  border: none;
+  border-bottom: 1px white solid;
+  background-color: transparent;
+  margin-top: 3%;
+  padding: 2%;
+}
+
+.auth-links-wrapper {
+  margin-top: 10%;
+}
+.create_account {
+  display: flex;
+  /* border: 1px solid yellow; */
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+}
+.create_account a {
+  color: #3de01c;
+  text-decoration: underline;
+}
+.login-buttons-wrapper {
+  display: flex;
+  /* flex-direction: column; */
+  /* border: 1px solid rgb(196, 106, 121); */
+  justify-content: center;
+  gap: 5%;
+}
+.login-button {
+  width: 40%;
+  padding: 10px;
+  background-color: #3de01c;
+  color: black;
+}
+.google-login-button {
+  width: 40%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.google-login-button:hover {
+  background-color: rgb(224, 224, 224);
+  border-color: black;
+}
+.login-button:hover {
+  background-color: #2ea915;
+  border-color: black;
+}
+.login-builder-wrapper {
+  /* border: 3px solid blue; */
+  flex: 1.5;
+}
+.login-builder-wrapper img {
+  width: 140%;
+  height: 110%;
+  /* border: 1px solid yellow; */
+}
+/* desktops */
+@media (min-width: 768px) {
+  .login-wrapper {
+    overflow: hidden;
+  }
+}
+
+/* mobiles */
+@media (max-width: 767px) {
+  .login-wrapper {
+    overflow: hidden;
+  }
+  .login-builder-wrapper {
+    /* border: 3px solid blue; */
+    flex: 0;
   }
 }

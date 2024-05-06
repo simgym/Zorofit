@@ -24,6 +24,9 @@ add animations to it
 // Handle the edge cases if array is empty or any parameter is empty or something else
 
 fix firestore issue for a new user always creaet a exercise array field
+
+fix youtbe issue because something is causing this component to render hunreds or thousands of times at once so it is reaching its quota
+look for state changes , useEffect , try using useCallback or something to solve this issue
 */
 
 const Exercises = () => {
@@ -32,6 +35,10 @@ const Exercises = () => {
   const [difficulty, setDifficulty] = useState("");
   const [exerciseData, setExerciseData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [exerciseNameData, setExerciseNameData] = useState([]);
+  const [exerciseVideos, setExerciseVideos] = useState([]);
+
+  console.log("exercise names are :", exerciseNameData);
 
   const dispatch = useDispatch();
 
@@ -62,90 +69,43 @@ const Exercises = () => {
 
   // for youtube API
 
-  // const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?q=anime`;
-
-  // const youtubeData = async () => {
-  //   try {
-  //     const response = await fetch(youtubeUrl, {
-  //       method: "GET",
-  //       headers: {
-  //         "X-Api-Key": "AIzaSyBxGQVU1UVmnvcpFyB5bp5933IyoWU6ywo",
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error("Something is wrong with youtube API");
-  //     }
-  //     const data = await response.json();
-  //     console.log("youtube search result: ", data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   youtubeData();
-  // }, []);
-
-  //------------------------------------------
-
-  // const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&q=onepiece&key=AIzaSyBxGQVU1UVmnvcpFyB5bp5933IyoWU6ywo`;
-
-  // const youtubeData = async () => {
-  //   try {
-  //     const response = await fetch(youtubeUrl, {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //       },
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error("Something is wrong with youtube API");
-  //     }
-  //     const data = await response.json();
-  //     console.log("youtube search result: ", data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   youtubeData();
-  // }, []);
-
-  //----------------------------------------------
-
-  // for video links
-
-  const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=2&q=Barbell glute bridge&key=AIzaSyBxGQVU1UVmnvcpFyB5bp5933IyoWU6ywo`;
-
-  const youtubeData = async () => {
-    try {
-      const response = await fetch(youtubeUrl, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      });
-      if (!response.ok) {
-        throw new Error("Something is wrong with youtube API");
-      }
-      const data = await response.json();
-      console.log("youtube search result: ", data);
-
-      // Log the video links
-      data.items.forEach((item) => {
-        const videoId = item.id.videoId;
-        const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
-        console.log(videoUrl);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    youtubeData();
+    const fetchVideos = async () => {
+      const exVideos = [];
+
+      for (let i = 0; i < exerciseNameData.length; i++) {
+        const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${
+          exerciseNameData[i]
+        }&key=${import.meta.env.VITE_youtube_key}`;
+
+        try {
+          const response = await fetch(youtubeUrl, {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+            },
+          });
+          if (!response.ok) {
+            throw new Error("Something is wrong with youtube API");
+          }
+          const data = await response.json();
+          console.log("youtube search result: ", data);
+
+          // Log the video links
+          data.items.forEach((item) => {
+            const videoId = item.id.videoId;
+            const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            exVideos.push(videoUrl);
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      setExerciseVideos(exVideos);
+      console.log("exercise videos are : ", exVideos);
+    };
+    fetchVideos();
   }, []);
 
   //----------------------------------------------
@@ -155,7 +115,7 @@ const Exercises = () => {
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          "X-Api-Key": "YyOwY4yWPhLbZ3fYUWuNhg==tAkiseZZr3E3Xnvk",
+          "X-Api-Key": import.meta.env.VITE_exerciseNinja_key,
           "Content-Type": "application/json",
         },
       });
@@ -167,6 +127,9 @@ const Exercises = () => {
       const data = await response.json();
       setExerciseData(data);
       console.log(data);
+
+      const exName = data.map((item) => item.name);
+      setExerciseNameData(exName);
 
       setLoading(false);
     } catch (error) {
@@ -279,7 +242,16 @@ const Exercises = () => {
               </span>
               <span className="exercise-form">
                 {/* VIDEO WILL GO HERE */}
-                <img src={sampleImg} />
+                {/* <img src={sampleImg} /> */}
+                {exerciseVideos[index] ? (
+                  <iframe
+                    src={"https://www.youtube.com/watch?v=pRkHLluG-V8"}
+                    title="YouTube Video"
+                    allowFullScreen
+                  />
+                ) : (
+                  <p>No video available</p>
+                )}
               </span>
             </div>
           </li>

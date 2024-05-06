@@ -29,6 +29,9 @@
 .program-link a {
   color: rgb(255, 255, 255);
 }
+.program-link a:hover {
+  color: black;
+}
 .program-clicks p {
   color: black;
   font-family: "Roboto", sans-serif;

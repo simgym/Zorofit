@@ -7,25 +7,28 @@
   z-index: 2;
 }
 
-/*for tabs*/
+/* for tabs */
 @media (min-width: 768px) and (max-width: 991px) {
   .example {
-    top: 42.4%;
+    /* top: 31.4%; */
+    top: 276px;
     width: 80%;
   }
 }
 
-/* CSS for Mobiles */
+/* CSS for Mobiles  */
 @media (max-width: 767px) {
   .example {
-    top: 38.3%;
+    /* top: 30.3%; */
+    top: 260px;
     width: 80%;
   }
 }
-/*CSS for Desktops */
+/* CSS for Desktops  */
 @media (min-width: 992px) {
   .example {
-    top: 43%;
+    /* top: 31%; */
+    top: 280px;
     width: 80%;
   }
 }
