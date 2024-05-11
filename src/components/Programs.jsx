@@ -3,7 +3,6 @@ import { GiJumpingRope } from "react-icons/gi";
 import { GrYoga } from "react-icons/gr";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { exerciseAction } from "../store/ExerciseStore";
 import "./Programs.css";

@@ -59,7 +59,7 @@
   font-style: normal;
   font-size: 2vw;
 }
-@media (max-width: 426px) {
+@media (max-width: 767px) {
   .programs {
     display: grid;
     grid-template-columns: 1fr;

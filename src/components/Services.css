@@ -44,7 +44,7 @@
   font-weight: 300;
   font-style: normal;
 }
-@media (max-width: 550px) {
+@media (max-width: 991px) {
   .services-heading p {
     font-size: 6vw;
   }
@@ -66,18 +66,6 @@
   }
   .service-description {
     font-size: 2vw;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .services-heading p {
-    font-size: 6vw;
-  }
-  .service-title {
-    font-size: 3vw;
-  }
-  .service-img img {
-    width: 40vw;
-    height: 20vh;
   }
 }
 @media (min-width: 992px) {

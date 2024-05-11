@@ -1,3 +1,32 @@
+.workout-planner-wrapper {
+  /* border: 3px solid rgb(41, 183, 208); */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.exercise-content-item .workout-planner-delete {
+  border: 1px solid transparent;
+  background: radial-gradient(
+    circle at top right,
+    #d03e00,
+    #8a2a00,
+    #8f0000,
+    #750000
+  );
+  color: rgb(255, 255, 255);
+}
+.exercise-content-item .workout-planner-delete:hover {
+  background: radial-gradient(
+    circle at top right,
+    #b63700,
+    #692000,
+    #650101,
+    #530101
+  );
+  border: 1px solid transparent;
+  color: #ffffff;
+}
 .parameter-wrapper {
   width: 100%;
   z-index: 2;
@@ -76,6 +105,29 @@
   display: flex;
   flex-direction: column;
 }
+.exercise-content-item select {
+  background-color: transparent;
+  border: 1px solid greenyellow;
+  border-radius: 12px;
+  width: 10%;
+  padding-top: 0.8vh;
+  padding-bottom: 1.3vh;
+  font-weight: 500;
+  font-size: larger;
+  z-index: 2;
+}
+
+.exercise-content-item select:hover {
+  border: 1px solid black;
+  background: radial-gradient(
+    circle at top right,
+    #c4c401,
+    #45ac01,
+    #35c219,
+    #188901
+  );
+  color: #191919;
+}
 .exercise-content-item button {
   background-color: transparent;
   border: 1px solid greenyellow;
@@ -139,10 +191,11 @@
   background-color: grey; */
   height: 100%;
 }
+
 .instruction-videos {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: last baseline;
   justify-content: space-between;
   /* border: 1px solid white; */
 }
@@ -195,6 +248,11 @@
   .instructions h4 {
     font-size: 1.5vw;
   }
+
+  .exercise-form iframe {
+    width: 200px;
+    height: 12vh;
+  }
 }
 
 /* CSS for Tablets */
@@ -243,11 +301,27 @@
   .instructions p {
     font-size: 1.5vw;
   }
-  .exercise-content-item button {
-    width: 10%;
+  .exercise-content-item select {
+    width: 20%;
     padding-bottom: 1.3vh;
     padding-top: 0.8vh;
     font-weight: 500;
+  }
+
+  .exercise-form iframe {
+    width: 100%;
+    height: 10vh;
+  }
+  .exercise-content-item button {
+    width: 20%;
+    padding-bottom: 1.3vh;
+    padding-top: 0.8vh;
+    font-weight: 500;
+  }
+
+  .exercise-form iframe {
+    width: 100%;
+    height: 10vh;
   }
 }
 
@@ -296,10 +370,24 @@
   .instructions p {
     font-size: 2vw;
   }
+  .exercise-content-item select {
+    width: 100%;
+    padding-bottom: 1.3vh;
+    padding-top: 0.8vh;
+    font-weight: 500;
+  }
   .exercise-content-item button {
     width: 100%;
     padding-bottom: 1.3vh;
     padding-top: 0.8vh;
     font-weight: 500;
+  }
+  .instruction-videos {
+    align-items: center;
+  }
+
+  .exercise-form iframe {
+    width: 100%;
+    height: 7vh;
   }
 }

@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { BsCheck2Circle } from "react-icons/bs";
 import "./MembershipPlans.css";
 
-// IMPROVE RESPONSIVE DESIGN FOR TAB
-
 const MembershipPlans = () => {
   return (
     <div className="plans-wrapper">

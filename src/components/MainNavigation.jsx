@@ -7,24 +7,6 @@ import { auth } from "../index";
 import defaultpic from "../assets/default.jpg";
 import "./MainNavigation.css";
 
-// once user has logged in add the profile opton which will open a list containing
-// activity , my plan , logout options
-
-// this my plan when clicked on should showcase the exercises i have selected for me
-// and the diet i have selected too for each day of week
-
-// By buying a membership based on your data you will be provided exercises and diet suited
-// to your needs
-
-// for diet create a component which will be used to create a diet plan by usinf ingrdients
-// using spoonacular api
-
-// check for erros in console for ref since ref are defined for font pages
-// only so can't use in exercises and login pages so apply condition
-// for ref to only work when user on front pages only
-
-// change UI of Login link as it is not cnetre aligned in media queries also improve padding in it
-
 const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
   let it = 0;
   console.log("scrollToSection prop in MainNavigation:", scrollToSection, ++it);
@@ -33,8 +15,6 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
 
   console.log("location is ", location);
 
-  // const [isExerciseOpen, setIsExerciseOpen] = useState(false);
-  // const [isDietOpen, setIsDietOpen] = useState(false);
   const [isProfileClicked, setIsProfileClicked] = useState(false);
 
   const [isExerciseActive, setIsExerciseActive] = useState(false);
@@ -51,12 +31,6 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
     } else {
       navigate("/exercise/referance");
     }
-
-    // setIsExerciseOpen((prev) => !prev);
-
-    // if (isDietOpen) {
-    //   setIsDietOpen(false);
-    // }
   };
 
   const dietHandler = () => {
@@ -103,56 +77,6 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
             animate={{ scaleX: isExerciseActive ? 1 : 0 }} // use ref poistion here as a condition
             transition={{ duration: 0.5 }}
           />
-          {/* {isExerciseOpen && (
-            <motion.ul
-              className="nav-list"
-              initial={{ opacity: 0, y: -10 }}
-              exit={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <li>
-                <Link
-                  to={`/exercise/${exerciseList[0]}`}
-                  onClick={() =>
-                    dispatch(exerciseAction.exerciseType(exerciseList[0]))
-                  }
-                >
-                  Cardio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={`/exercise/${exerciseList[1]}`}
-                  onClick={() =>
-                    dispatch(exerciseAction.exerciseType(exerciseList[1]))
-                  }
-                >
-                  Powerlifting
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={`/exercise/${exerciseList[2]}`}
-                  onClick={() =>
-                    dispatch(exerciseAction.exerciseType(exerciseList[2]))
-                  }
-                >
-                  Strength
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={`/exercise/${exerciseList[3]}`}
-                  onClick={() =>
-                    dispatch(exerciseAction.exerciseType(exerciseList[3]))
-                  }
-                >
-                  Stretching
-                </Link>
-              </li>
-            </motion.ul>
-          )} */}
         </div>
         <div className="nav-item">
           <motion.p
@@ -168,18 +92,6 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
             animate={{ scaleX: isDietActive ? 1 : 0 }} // use ref poistion here as a condition
             transition={{ duration: 0.5 }}
           />
-          {/* {isDietOpen && (
-            <motion.ul
-              className="nav-list"
-              initial={{ opacity: 0, y: -10 }}
-              exit={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <li>Fat loss</li>
-              <li>Bulking</li>
-            </motion.ul>
-          )} */}
         </div>
         <div className="nav-item">
           <p>

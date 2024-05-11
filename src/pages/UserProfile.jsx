@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import PerformanceTracker from "../components/PerformanceTracker";
-import TrainerPlus from "../components/TrainerPlus";
-import WorkoutPlanner from "../components/WorkoutPlanner";
-import ZoroBuddy from "../components/ZoroBuddy";
+import PerformanceTracker from "../components/userProfileServices/PerformanceTracker";
+import TrainerPlus from "../components/userProfileServices/TrainerPlus";
+import WorkoutPlanner from "../components/userProfileServices/WorkoutPlanner";
+import ZoroBuddy from "../components/userProfileServices/ZoroBuddy";
 import "./UserProfile.css";
+
+import { SlCalender } from "react-icons/sl";
+import { GiSprint } from "react-icons/gi";
+import { CgNotes } from "react-icons/cg";
+import { FaUserFriends } from "react-icons/fa";
 
 const UserProfile = () => {
   const [plannerIsActve, setPlannerIsActive] = useState(true);
@@ -38,24 +43,35 @@ const UserProfile = () => {
 
   return (
     <div className="user-wrapper">
-      <div className="left-panel">
-        <ul>
+      <div className="top-panel">
+        <ul className="top-panel-list">
           <li onClick={workoutHandler}>
-            <p>Workout Planner</p>
+            <p>
+              <SlCalender />
+              Workout Planner
+            </p>
           </li>
           <li onClick={performanceHandler}>
-            <p>Performance Tracker</p>
+            <p>
+              <GiSprint />
+              Performance Tracker
+            </p>
           </li>
           <li onClick={trainerHandler}>
-            <p>Trainer+</p>
+            <p>
+              <CgNotes />
+              Trainer+
+            </p>
           </li>
           <li onClick={zoroHandler}>
-            <p>Zoro Buddy</p>
+            <p>
+              <FaUserFriends />
+              Zoro Buddy
+            </p>
           </li>
         </ul>
       </div>
-      <div className="right-panel">
-        {" "}
+      <div className="bottom-panel">
         <div>
           {plannerIsActve &&
             !trainerIsActive &&

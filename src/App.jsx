@@ -1,7 +1,7 @@
 import "./App.css";
 import Logo from "./components/Logo";
 import Homepage from "./pages/Homepage";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./authentication/Login";
@@ -15,10 +15,8 @@ import Signout from "./authentication/Logout";
 import Signup from "./authentication/Signup";
 import UserProfile from "./pages/UserProfile";
 
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
-// ADD YOUTUBE API FOR EXERCISE VIDEOS
 
 function App() {
   let it = 0;
