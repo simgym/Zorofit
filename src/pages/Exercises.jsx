@@ -83,7 +83,7 @@ const Exercises = () => {
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          "X-Api-Key": import.meta.env.VITE_exerciseNinja_key,
+          "X-Api-Key": "YyOwY4yWPhLbZ3fYUWuNhg==tAkiseZZr3E3Xnvk",
           "Content-Type": "application/json",
         },
       });
