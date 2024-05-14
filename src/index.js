@@ -2,6 +2,10 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+import { useDispatch } from "react-redux";
+import { exerciseAction } from "./store/ExerciseStore";
 
 // import { getDatabase } from "firebase/database";
 
@@ -49,3 +53,22 @@ export const signInWithGoogle = async () => {
 };
 
 export const db = getFirestore(app);
+
+export const storage = getStorage(app);
+
+// storage
+
+// export const upload = async (file, currentUser, setLoading) => {
+//   try {
+//     const fileRef = ref(storage, currentUser.uid + ".png");
+//     setLoading(true);
+//     const snapshot = await uploadBytes(fileRef, file);
+//     const photoURL = await getDownloadURL(fileRef);
+//     console.log("PHOTO URL IN INDEX.JS IS : ", photoURL);
+//     setLoading(false);
+
+//   } catch (error) {
+//     console.error("Error uploading file:", error);
+//     setLoading(false);
+//   }
+// };

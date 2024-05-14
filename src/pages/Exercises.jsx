@@ -36,44 +36,44 @@ const Exercises = () => {
 
   const workoutDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-  useEffect(() => {
-    const fetchVideos = async () => {
-      setLoadingVideo(true);
-      const exVideos = [];
+  // useEffect(() => {
+  //   const fetchVideos = async () => {
+  //     setLoadingVideo(true);
+  //     const exVideos = [];
 
-      if (exerciseData.length === 10) {
-        for (let i = 0; i < exerciseData.length && i < 10; i++) {
-          const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${
-            exerciseData[i].name
-          }&key=${import.meta.env.VITE_youtube_key}`;
+  //     if (exerciseData.length === 10) {
+  //       for (let i = 0; i < exerciseData.length && i < 10; i++) {
+  //         const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${
+  //           exerciseData[i].name
+  //         }&key=${import.meta.env.VITE_youtube_key}`;
 
-          try {
-            const response = await fetch(youtubeUrl, {
-              method: "GET",
-              headers: {
-                Accept: "application/json",
-              },
-            });
+  //         try {
+  //           const response = await fetch(youtubeUrl, {
+  //             method: "GET",
+  //             headers: {
+  //               Accept: "application/json",
+  //             },
+  //           });
 
-            if (!response.ok) {
-              throw new Error("Something is wrong with the YouTube API");
-            }
+  //           if (!response.ok) {
+  //             throw new Error("Something is wrong with the YouTube API");
+  //           }
 
-            const data = await response.json();
-            const videoId = data.items[0].id.videoId;
-            const videoUrl = `https://www.youtube.com/embed/${videoId}`;
-            exVideos.push(videoUrl);
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      }
-      setExerciseVideos(exVideos);
-      setLoadingVideo(false);
-    };
+  //           const data = await response.json();
+  //           const videoId = data.items[0].id.videoId;
+  //           const videoUrl = `https://www.youtube.com/embed/${videoId}`;
+  //           exVideos.push(videoUrl);
+  //         } catch (error) {
+  //           console.log(error);
+  //         }
+  //       }
+  //     }
+  //     setExerciseVideos(exVideos);
+  //     setLoadingVideo(false);
+  //   };
 
-    fetchVideos();
-  }, [exerciseData]);
+  //   fetchVideos();
+  // }, [exerciseData]);
 
   const trainingData = async () => {
     setLoading(true);
@@ -139,6 +139,10 @@ const Exercises = () => {
                 const selectedDay = e.target.value;
                 // logic to add exercise data for the selected day
                 if (auth.currentUser) {
+                  console.log(
+                    "currently logged in user is",
+                    auth.currentUser.displayName
+                  );
                   if (selectedDay) {
                     const userDocRef = doc(
                       db,

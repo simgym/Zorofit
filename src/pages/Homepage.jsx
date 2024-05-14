@@ -3,9 +3,13 @@ import img1 from "../assets/1.jpg";
 import img2 from "../assets/2.jpg";
 import img3 from "../assets/3.jpg";
 import { useEffect, useState } from "react";
+import { auth } from "../index";
 
 const Homepage = ({ membershipRef, scrollToSection }) => {
   console.log(scrollToSection);
+  if (auth.currentUser) {
+    console.log("CURRENT USER NAME IS : ", auth.currentUser.displayName);
+  }
   const [image, setImage] = useState(0);
   const images = [img1, img2, img3];
 

@@ -7,8 +7,6 @@ import { FcGoogle } from "react-icons/fc";
 import bodyBuilderImg from "../assets/4.jpg";
 import "./Login.css";
 
-// change the UI
-// remove signIn with google from here keep it in signup only
 // Handle edge cases for error
 
 const Login = () => {

@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import defaultAvatar from "../assets/1.jpg";
 
-const initialState = { type: "", userSelectedExerciseList: [] };
+const initialState = {
+  type: "",
+  userSelectedExerciseList: [],
+};
 
 const exerciseSlice = createSlice({
   name: "exerciseInfo",

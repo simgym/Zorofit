@@ -14,6 +14,8 @@ import Services from "./components/Services";
 import Signout from "./authentication/Logout";
 import Signup from "./authentication/Signup";
 import UserProfile from "./pages/UserProfile";
+import Diet from "./pages/Diet";
+import About from "./pages/About";
 
 import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -71,6 +73,8 @@ function App() {
         { path: "/signout", element: <Signout /> },
         { path: "/signup", element: <Signup /> },
         { path: "/myprofile/:userid", element: <UserProfile /> },
+        { path: "/about/:userid", element: <About /> },
+        { path: "/diet", element: <Diet /> },
       ],
     },
   ]);

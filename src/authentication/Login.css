@@ -28,7 +28,7 @@
 .login-wrapper form input {
   width: 90%;
   margin-bottom: 5%;
-
+  outline: none;
   font-size: large;
   border: none;
   border-bottom: 1px white solid;
@@ -88,6 +88,24 @@
   height: 110%;
   /* border: 1px solid yellow; */
 }
+.signup-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+.avatar-img-container {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid rgb(33, 177, 95); */
+}
+.avatar-img-container img {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+}
+
 /* desktops */
 @media (min-width: 768px) {
   .login-wrapper {

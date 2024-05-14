@@ -18,10 +18,10 @@
 }
 
 /* CSS for Mobiles  */
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .example {
     /* top: 30.3%; */
-    top: 260px;
+    top: 265px;
     width: 80%;
   }
 }

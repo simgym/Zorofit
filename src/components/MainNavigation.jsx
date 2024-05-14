@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { exerciseAction } from "../store/ExerciseStore";
-import { auth } from "../index";
+import { auth, storage } from "../index";
 import defaultpic from "../assets/default.jpg";
+import { useSelector } from "react-redux";
+import { ref, getDownloadURL } from "firebase/storage";
 import "./MainNavigation.css";
 
 const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
@@ -15,15 +17,45 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
 
   console.log("location is ", location);
 
+  // let avatar = useSelector((state) => state.exerciseReducer.avatar);
+  const [avatar, setAvatar] = useState(defaultpic);
+
   const [isProfileClicked, setIsProfileClicked] = useState(false);
 
   const [isExerciseActive, setIsExerciseActive] = useState(false);
   const [isDietActive, setIsDietActive] = useState(false);
   const [isHomeActive, setIsHomeActive] = useState(false);
 
-  const dispatch = useDispatch();
+  // const [isLoading, setIsLoading] = useState(false);
+
+  // const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // setIsLoading(true);
+        if (auth.currentUser && auth.currentUser.uid) {
+          console.log("USER DISPLAY NAME : ", auth.currentUser.displayName);
+          const fileRef = ref(storage, auth.currentUser.uid + ".png");
+
+          if (fileRef) {
+            const photoURL = await getDownloadURL(fileRef);
+            console.log("PHOTOURL", photoURL);
+            setAvatar(photoURL);
+          }
+        }
+        // setIsLoading(false);
+      } catch (error) {
+        // Handle any errors here
+        setAvatar(defaultpic);
+        console.error("Error fetching avatar:", error);
+      }
+    };
+
+    fetchData(); // Call the async function
+  }, [auth.currentUser]);
 
   const exerciseHandler = () => {
     if (location.pathname == "/") {
@@ -33,12 +65,13 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
     }
   };
 
-  const dietHandler = () => {
-    // setIsDietOpen((prev) => !prev);
-    // if (isExerciseOpen) {
-    //   setIsExerciseOpen(false);
-    // }
-  };
+  // const dietHandler = () => {
+  // setIsDietOpen((prev) => !prev);
+  // if (isExerciseOpen) {
+  //   setIsExerciseOpen(false);
+  // }
+  //   navigate("/diet");
+  // };
 
   const exerciseList = ["cardio", "powerlifting", "strength", "stretching"];
 
@@ -78,7 +111,7 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
             transition={{ duration: 0.5 }}
           />
         </div>
-        <div className="nav-item">
+        {/* <div className="nav-item">
           <motion.p
             onClick={dietHandler}
             onMouseEnter={() => setIsDietActive(true)}
@@ -89,15 +122,15 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
           <motion.div
             className="underline"
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: isDietActive ? 1 : 0 }} // use ref poistion here as a condition
+            animate={{ scaleX: isDietActive ? 1 : 0 }} 
             transition={{ duration: 0.5 }}
           />
-        </div>
+        </div> */}
         <div className="nav-item">
           <p>
             {auth.currentUser && (
               <img
-                src={defaultpic}
+                src={avatar}
                 onClick={() => setIsProfileClicked((prev) => !prev)}
               />
             )}
@@ -114,6 +147,9 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
             >
+              <li onClick={() => setIsProfileClicked((prev) => !prev)}>
+                <Link to={`/about/${auth.currentUser.uid}`}>About</Link>
+              </li>
               <li onClick={() => setIsProfileClicked((prev) => !prev)}>
                 <Link to={`/myprofile/${auth.currentUser.uid}`}>Profile</Link>
               </li>

@@ -6,7 +6,7 @@
 
   width: 90vw;
   height: 750px;
-  /* border: 1px solid rgb(203, 195, 29); */
+  border: 1px solid rgb(203, 195, 29);
   margin-top: 10vh;
   position: absolute;
   top: 400px;
@@ -17,7 +17,7 @@
 
 .top-panel {
   flex: 0.5;
-  /* border: 1px solid white; */
+  border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,7 +26,7 @@
 }
 .bottom-panel {
   flex: 2;
-  /* border: 1px solid rgb(47, 45, 145); */
+  border: 1px solid rgb(4, 0, 255);
   width: 100%;
   height: 300px;
 }
@@ -36,12 +36,12 @@
   list-style: none;
   justify-content: space-between;
   align-items: flex-start;
-  /* border: 1px solid yellow; */
+  border: 1px solid yellow;
   padding-left: 0;
   width: 100%;
 }
 .top-panel-list li {
-  /* border: 1px solid rgb(255, 0, 174); */
+  border: 1px solid rgb(255, 0, 174);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -49,7 +49,7 @@
   z-index: 2;
 }
 .top-panel-list li p {
-  /* border: 1px solid pink; */
+  border: 1px solid pink;
   border-radius: 3%;
   display: flex;
   flex-direction: column;
