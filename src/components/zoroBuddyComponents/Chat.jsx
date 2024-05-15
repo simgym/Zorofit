@@ -12,10 +12,12 @@ import {
 } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import "../userProfileServices/ZoroBuddy.css";
+import defaultAvatar from "../../assets/default.jpg";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  // const [selectedChatId, setSelectedChatId] = useState(null);
   const selectedChat = localStorage.getItem("chatID");
   const chattingWith = localStorage.getItem("chattingWith");
   console.log(
@@ -23,6 +25,11 @@ const Chat = () => {
     " is chatting with : ",
     chattingWith
   );
+
+  // useEffect(() => {
+  //   setSelectedChatId(selectedChat);
+  //   console.log("SELECTED CHAT NID IN USEFFECT IS", selectedChatId);
+  // }, [selectedChat]);
 
   useEffect(() => {
     const fetchMessages = () => {
@@ -38,6 +45,7 @@ const Chat = () => {
         // real-time listener for immediate display of messages sent
         const unsubscribe = onSnapshot(q, (snapshot) => {
           const messagesData = snapshot.docs.map((doc) => doc.data());
+          console.log("MESSAGES ARE :", messagesData);
           setMessages(messagesData);
         });
 
@@ -78,12 +86,21 @@ const Chat = () => {
     }
   };
 
+  // scroll to bottom of conv
+  useEffect(() => {
+    const conversationDiv = document.getElementById("conversation");
+    if (conversationDiv) {
+      conversationDiv.scrollTop = conversationDiv.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <div className="zoro-chat">
       <div className="convo-header">
+        <img src={defaultAvatar} />
         <span>{chattingWith}</span>
       </div>
-      <div className="conversation">
+      <div className="conversation" id="conversation">
         {messages &&
           messages.map((msg, index) => (
             <div key={index}>
@@ -94,7 +111,13 @@ const Chat = () => {
                     : "otherMessage "
                 }
               >
-                <p className="chatMessage">{msg.content}</p>
+                <span className="chatMessage">
+                  <span className="message-content">{msg.content}</span>
+                  <span className="message-timing">
+                    {new Date(msg.timestamp.seconds * 1000).getHours()}:
+                    {new Date(msg.timestamp.seconds * 1000).getMinutes()}
+                  </span>
+                </span>
               </p>
             </div>
           ))}

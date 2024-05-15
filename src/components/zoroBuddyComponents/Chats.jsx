@@ -11,11 +11,14 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { useDispatch } from "react-redux";
+import { storage } from "../../index";
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 
 const Chats = ({ setUsersDetailsArray, setSelectedChat, setChattingWith }) => {
   const [loading, setLoading] = useState(false);
   const [chatsArray, setChatsArray] = useState([]);
   const [dataNotFound, setDataNotFound] = useState(false);
+  const [avatarList, setAvatarList] = useState([]);
 
   const fetchChats = async () => {
     try {
@@ -89,6 +92,26 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat, setChattingWith }) => {
     fetchChats();
   }, []);
 
+  // function for fetching avatars from storage
+  const fetchAvatars = async () => {
+    const listRef = ref(storage);
+    const res = await listAll(listRef);
+    const storageData = [];
+    for (let item of res.items) {
+      const uid = item.name.split(".")[0];
+      const url = await getDownloadURL(item);
+      storageData[uid] = url;
+    }
+    console.log("STORAGE DATA IS : ", storageData);
+    setAvatarList(storageData);
+    const navAvatar = storageData[auth.currentUser.uid];
+    localStorage.setItem("navAvatar", navAvatar);
+  };
+
+  useEffect(() => {
+    fetchAvatars();
+  }, []);
+
   return (
     <div className="zoroChats">
       {!dataNotFound &&
@@ -101,7 +124,10 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat, setChattingWith }) => {
               localStorage.setItem("chattingWith", user.name);
             }}
           >
-            <img src={user.photoURL} />
+            <img
+              src={avatarList[user.uid] ? avatarList[user.uid] : defaultAvatar}
+              alt="img"
+            />
             <div className="userChatInfo">
               <span>{user.name}</span>
               <p>Hello</p>

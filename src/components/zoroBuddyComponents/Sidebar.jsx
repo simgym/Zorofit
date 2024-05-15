@@ -5,6 +5,7 @@ import Chats from "./Chats";
 
 const Sidebar = () => {
   const [usersDetailsArray, setUsersDetailsArray] = useState([]);
+  // const [navAvatarList, setNavAvatarList] = useState("");
 
   return (
     <div className="zoro-sidebar">
