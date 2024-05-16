@@ -8,12 +8,12 @@ const Navbar = ({ usersDetailsArray }) => {
     <div className="zoro-navbar">
       <span className="zoro-logo">ZORO BUDDY</span>
 
-      {usersDetailsArray.map((user, index) => (
+      {/* {usersDetailsArray.map((user, index) => (
         <div className="zoro-user" key={index}>
           <img src={navAvatar ? navAvatar : defaultAvatar} alt="img" />
           <span>{user.name}</span>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };

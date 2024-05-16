@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   selectedChatId: null,
   usersDetailsArray: [],
+  // isChatClicked: false,
 };
 
 const chatSlice = createSlice({
@@ -15,6 +16,10 @@ const chatSlice = createSlice({
     setUserDetails(state, action) {
       state.usersDetailsArray = [...state.usersDetailsArray, action.payload];
     },
+    // isChatClicked(state, action) {
+    //   state.isChatClicked = action.payload;
+    //   console.log(state.isChatClicked);
+    // },
   },
 });
 

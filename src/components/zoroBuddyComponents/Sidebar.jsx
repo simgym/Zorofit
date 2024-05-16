@@ -6,6 +6,7 @@ import Chats from "./Chats";
 const Sidebar = () => {
   const [usersDetailsArray, setUsersDetailsArray] = useState([]);
   // const [navAvatarList, setNavAvatarList] = useState("");
+  console.log("userDetailsArray in Sidebar component is :", usersDetailsArray);
 
   return (
     <div className="zoro-sidebar">

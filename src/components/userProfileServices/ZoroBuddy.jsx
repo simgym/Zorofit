@@ -7,17 +7,20 @@ import "./ZoroBuddy.css";
 const ZoroBuddy = () => {
   const [selectedChat, setSelectedChat] = useState(null);
   // const [chattingWith, setChattingWith] = useState("");
-  // const handleSelectChat = (chatId) => {
-  //   setSelectedChat(chatId);
-  // };
-
+  const handleSelectChat = (chatId) => {
+    console.log("handleSelectChat called in ZOROBUDDY with", chatId);
+    setSelectedChat(chatId);
+    console.log("selectedChat updated to", chatId);
+  };
+  // console.log("In ZoroBuddy, handleSelectChat is", selectedChat);
   return (
     <div className="zoro-wrapper">
       <div className="zoro-container">
         <Sidebar />
         <Chat selectedChat={selectedChat} />
         <Chats
-          setSelectedChat={setSelectedChat}
+          handleSelectChat={handleSelectChat}
+          selectedChat={selectedChat}
           // setChattingWith={setChattingWith}
         />
       </div>

@@ -13,6 +13,7 @@ import {
 import { useSelector } from "react-redux";
 import "../userProfileServices/ZoroBuddy.css";
 import defaultAvatar from "../../assets/default.jpg";
+import { IoSend } from "react-icons/io5";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
@@ -104,21 +105,21 @@ const Chat = () => {
         {messages &&
           messages.map((msg, index) => (
             <div key={index}>
-              <p
+              <div
                 className={
                   msg.senderId === auth.currentUser.uid
                     ? "yourMessages"
                     : "otherMessage "
                 }
               >
-                <span className="chatMessage">
+                <div className="chatMessage">
                   <span className="message-content">{msg.content}</span>
                   <span className="message-timing">
                     {new Date(msg.timestamp.seconds * 1000).getHours()}:
                     {new Date(msg.timestamp.seconds * 1000).getMinutes()}
                   </span>
-                </span>
-              </p>
+                </div>
+              </div>
             </div>
           ))}
         {!messages && <p>NO MESSAGES</p>}
@@ -131,7 +132,9 @@ const Chat = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button type="submit">Send</button>
+          <button type="submit">
+            <IoSend />
+          </button>
         </form>
       </div>
     </div>
