@@ -17,18 +17,30 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { IoChevronBack } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 
+/*
+PROBLEM:
+
+The messages are public so if Anju text to Manav
+Aditya can see those texts because he is getting same user
+*/
+
 const Chat = ({ selectedChat, onBack }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const chattingWith = localStorage.getItem("chattingWith");
-
   const isSmallScreen = useMediaQuery("(max-width:768px)");
-
+  // const [selectedChatId, setSelectedChatId] = useState(null);
+  // const selectedChat = localStorage.getItem("chatID");
+  const chattingWith = localStorage.getItem("chattingWith");
   console.log(
     auth.currentUser.displayName,
-    " is chatting with: ",
+    " is chatting with : ",
     chattingWith
   );
+
+  // useEffect(() => {
+  //   setSelectedChatId(selectedChat);
+  //   console.log("SELECTED CHAT NID IN USEFFECT IS", selectedChatId);
+  // }, [selectedChat]);
 
   useEffect(() => {
     const fetchMessages = () => {

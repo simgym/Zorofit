@@ -63,6 +63,11 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
         // set the selected chat ID
         // setSelectedChat(chatId);
         localStorage.setItem("chatID", chatId);
+        if (typeof setSelectedChat === "function") {
+          setSelectedChat(chatId);
+        } else {
+          console.error("setSelectedChat is not a function");
+        }
       } else {
         // chat does not exist, create a new chat
         console.log(
@@ -72,6 +77,11 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
         await setDoc(chatDocRef, {});
         // set the selected chat ID
         localStorage.setItem("chatID", chatId);
+        if (typeof setSelectedChat === "function") {
+          setSelectedChat(chatId);
+        } else {
+          console.error("setSelectedChat is not a function");
+        }
         // setSelectedChat(chatId);
       }
     } catch (error) {
@@ -113,11 +123,6 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
             onClick={() => {
               checkChatExists(user.uid);
               localStorage.setItem("chattingWith", user.name);
-              if (typeof setSelectedChat === "function") {
-                setSelectedChat(user.uid);
-              } else {
-                console.error("setSelectedChat is not a function");
-              }
             }}
           >
             <img
