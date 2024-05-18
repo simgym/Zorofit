@@ -5,27 +5,58 @@
   justify-content: center;
 }
 .zoro-container {
-  border: 1px solid #ffffff;
+  border: 1px solid rgb(40, 40, 40);
 
   border-radius: 10px;
   width: 100%;
+
   height: 100%;
   display: flex;
   overflow: hidden;
 }
-.zoro-sidebar {
-  flex: 1;
-  background-color: grey;
-}
+
 .zoro-chat {
+  background: linear-gradient(
+      to bottom right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url(../../assets/zorobuddybackground.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* left: 12%;
+  top: 5%; */
+
   flex: 2;
-  background-color: black;
+  /* background-color: black; */
+  display: flex;
+  flex-direction: column;
+
+  /* min-width: 0; */
+}
+.noChatYet {
+  background-image: url(../../assets/gymBuddyAvatar.jpg);
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* left: 12%;
+  top: 5%; */
+
+  flex: 2;
+  /* background-color: black; */
   display: flex;
   flex-direction: column;
 }
+
 .zoroChats {
   background-color: black;
-  height: 480px;
+  height: 595px;
   overflow-y: scroll;
 }
 .conversation {
@@ -33,14 +64,19 @@
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-
   /* border: 1px solid red; */
 }
+.zoro-sidebar {
+  flex: 1;
+  background-color: grey;
+  min-width: 0;
+}
 .yourMessages {
-  /* background-color: black; */
+  /* background-color: white; */
   color: rgb(0, 0, 0);
   display: flex;
-  justify-content: flex-end;
+  justify-content: right;
+  padding-right: 0.5%;
   margin-bottom: 3px;
 }
 .otherMessage {
@@ -49,31 +85,35 @@
   display: flex;
   justify-content: flex-start;
   margin-bottom: 3px;
+  padding-left: 0.5%;
 }
 .yourMessages .chatMessage {
   background-color: #21db30;
   border-radius: 10px;
-  height: auto;
-  max-width: 300px;
-  min-width: 100px;
+  /* max-width: 80%;
+  min-width: 50px; */
   padding: 10px;
   text-align: start;
   overflow-wrap: break-word;
+  /* margin-right: 2%; */
 }
 .otherMessage .chatMessage {
-  background-color: rgb(116, 116, 116);
+  background-color: rgb(141, 141, 141);
   border-radius: 10px;
   height: auto;
-  max-width: 300px;
-  min-width: 100px;
+  /* max-width: 80%;
+  min-width: 50px; */
   padding: 10px;
   text-align: start;
   overflow-wrap: break-word;
+  /* margin-left: 2%; */
 }
 .chatMessage {
   /* border: 1px solid white; */
   display: flex;
   justify-content: space-between;
+  max-width: 80%;
+  min-width: 50px;
   /* gap: 4px; */
 }
 .message-content {
@@ -95,13 +135,14 @@
   flex: 0;
   /* border: 1px solid white; */
   margin-top: 10px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
+  /* padding-right: 10px; */
+  background-color: rgb(25, 25, 25);
   /* border: 1px solid rgb(0, 0, 0); */
 }
 .sendMessage input {
@@ -109,17 +150,29 @@
   width: 100%;
   border-radius: 20px;
   outline: none;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
+  border: none;
   padding-left: 10px;
+  background-color: rgb(43, 43, 43);
 }
 .sendMessage button {
   background-color: #21db30;
-  /* border: 1px solid rgb(0, 0, 0); */
   border-radius: 50%;
-  width: 38px;
+  width: 45px;
   height: 38px;
   color: rgb(0, 0, 0);
-  text-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  border: none;
+}
+.sendMessage .message-options {
+  background-color: transparent;
+  color: white;
+  /* border: 1px solid white; */
+  font-size: 25px;
 }
 .zoro-navbar {
   display: flex;
@@ -143,21 +196,23 @@
   border-radius: 50%;
   object-fit: cover;
 }
-.zoro-user-search {
-  border-bottom: 1px solid black;
-}
 .zoro-user-search .zoro-searchForm {
   padding: 10px;
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 .zoro-user-search .zoro-searchForm input {
   background-color: transparent;
   color: rgb(0, 0, 0);
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(96, 96, 96);
   outline: none;
+  width: 90%;
 }
 .zoro-user-search .zoro-searchForm input::placeholder {
-  color: black;
+  color: rgb(73, 73, 73);
 }
 
 .userChat {
@@ -180,7 +235,7 @@
   background-color: black;
 }
 .userChatInfo {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -217,4 +272,37 @@
   width: 24px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+@media (max-width: 425px) {
+  .zoro-container {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  .zoro-chat {
+    flex: 1;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .zoroChats {
+    background-color: black;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .conversation {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
 }

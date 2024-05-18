@@ -10,27 +10,25 @@ import {
   orderBy,
   onSnapshot,
 } from "firebase/firestore";
-import { useSelector } from "react-redux";
 import "../userProfileServices/ZoroBuddy.css";
 import defaultAvatar from "../../assets/default.jpg";
 import { IoSend } from "react-icons/io5";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { IoChevronBack } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
 
-const Chat = () => {
+const Chat = ({ selectedChat, onBack }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  // const [selectedChatId, setSelectedChatId] = useState(null);
-  const selectedChat = localStorage.getItem("chatID");
   const chattingWith = localStorage.getItem("chattingWith");
+
+  const isSmallScreen = useMediaQuery("(max-width:768px)");
+
   console.log(
     auth.currentUser.displayName,
-    " is chatting with : ",
+    " is chatting with: ",
     chattingWith
   );
-
-  // useEffect(() => {
-  //   setSelectedChatId(selectedChat);
-  //   console.log("SELECTED CHAT NID IN USEFFECT IS", selectedChatId);
-  // }, [selectedChat]);
 
   useEffect(() => {
     const fetchMessages = () => {
@@ -96,20 +94,23 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <div className="zoro-chat">
-      <div className="convo-header">
-        <img src={defaultAvatar} />
-        <span>{chattingWith}</span>
-      </div>
+    <div className={selectedChat ? "zoro-chat" : "noChatYet"}>
+      {selectedChat && (
+        <div className="convo-header">
+          {isSmallScreen && <IoChevronBack onClick={() => onBack()} />}
+          <img src={defaultAvatar} alt="Avatar" />
+          <span>{chattingWith}</span>
+        </div>
+      )}
       <div className="conversation" id="conversation">
-        {messages &&
+        {messages.length > 0 &&
           messages.map((msg, index) => (
             <div key={index}>
               <div
                 className={
                   msg.senderId === auth.currentUser.uid
                     ? "yourMessages"
-                    : "otherMessage "
+                    : "otherMessage"
                 }
               >
                 <div className="chatMessage">
@@ -122,21 +123,30 @@ const Chat = () => {
               </div>
             </div>
           ))}
-        {!messages && <p>NO MESSAGES</p>}
+        {/* {!selectedChat && (
+          <div className="initial-zoro-chat">
+            <p>Find Your Fitness Friend</p>
+          </div>
+        )} */}
       </div>
-      <div className="sendMessage">
-        <form onSubmit={sendMessage}>
-          <input
-            type="text"
-            placeholder="Type your message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <button type="submit">
-            <IoSend />
-          </button>
-        </form>
-      </div>
+      {selectedChat && (
+        <div className="sendMessage">
+          <form onSubmit={sendMessage}>
+            <button className="message-options">
+              <IoMdAdd />
+            </button>
+            <input
+              type="text"
+              placeholder="Type your message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <button type="submit">
+              <IoSend />
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

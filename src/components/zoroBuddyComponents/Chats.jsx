@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
 import defaultAvatar from "../../assets/default.jpg";
 import "../userProfileServices/ZoroBuddy.css";
-import { db, auth } from "../../index";
-import {
-  getDocs,
-  doc,
-  collection,
-  deleteDoc,
-  getDoc,
-  setDoc,
-} from "firebase/firestore";
-import { useDispatch } from "react-redux";
-import { storage } from "../../index";
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import { db, auth, storage } from "../../index";
+import { getDocs, doc, collection, getDoc, setDoc } from "firebase/firestore";
+import { ref, listAll, getDownloadURL } from "firebase/storage";
 
-const Chats = ({ setUsersDetailsArray, setSelectedChat, setChattingWith }) => {
+const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
   const [loading, setLoading] = useState(false);
   const [chatsArray, setChatsArray] = useState([]);
   const [dataNotFound, setDataNotFound] = useState(false);
@@ -122,6 +113,11 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat, setChattingWith }) => {
             onClick={() => {
               checkChatExists(user.uid);
               localStorage.setItem("chattingWith", user.name);
+              if (typeof setSelectedChat === "function") {
+                setSelectedChat(user.uid);
+              } else {
+                console.error("setSelectedChat is not a function");
+              }
             }}
           >
             <img
