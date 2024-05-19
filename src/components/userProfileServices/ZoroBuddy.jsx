@@ -7,6 +7,7 @@ import "./ZoroBuddy.css";
 const ZoroBuddy = () => {
   const [selectedChat, setSelectedChat] = useState(null);
   const [showChat, setShowChat] = useState(false);
+  const [selectedUserPic, setSelectedUserPic] = useState("");
 
   const isSmallScreen = useMediaQuery("(max-width:768px)");
 
@@ -28,14 +29,27 @@ const ZoroBuddy = () => {
       <div className="zoro-container">
         {isSmallScreen ? (
           showChat ? (
-            <Chat selectedChat={selectedChat} onBack={handleBackToSidebar} />
+            <Chat
+              selectedChat={selectedChat}
+              onBack={handleBackToSidebar}
+              selectedUserPic={selectedUserPic}
+            />
           ) : (
-            <Sidebar setSelectedChat={handleSelectChat} />
+            <Sidebar
+              setSelectedChat={handleSelectChat}
+              setSelectedUserPic={setSelectedUserPic}
+            />
           )
         ) : (
           <>
-            <Sidebar setSelectedChat={handleSelectChat} />
-            <Chat selectedChat={selectedChat} />
+            <Sidebar
+              setSelectedChat={handleSelectChat}
+              setSelectedUserPic={setSelectedUserPic}
+            />
+            <Chat
+              selectedChat={selectedChat}
+              selectedUserPic={selectedUserPic}
+            />
           </>
         )}
       </div>

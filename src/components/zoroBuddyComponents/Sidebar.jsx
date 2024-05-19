@@ -5,14 +5,16 @@ import Chats from "./Chats";
 
 const Sidebar = ({ setSelectedChat }) => {
   const [usersDetailsArray, setUsersDetailsArray] = useState([]);
+  const [searchUser, setSearchUser] = useState("");
 
   return (
     <div className="zoro-sidebar">
       <Navbar usersDetailsArray={usersDetailsArray} />
-      <Search />
+      <Search setSearchUser={setSearchUser} />
       <Chats
         setUsersDetailsArray={setUsersDetailsArray}
         setSelectedChat={setSelectedChat}
+        searchUser={searchUser}
       />
     </div>
   );

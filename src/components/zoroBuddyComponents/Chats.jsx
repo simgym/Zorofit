@@ -5,11 +5,18 @@ import { db, auth, storage } from "../../index";
 import { getDocs, doc, collection, getDoc, setDoc } from "firebase/firestore";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 
-const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
+const Chats = ({
+  setUsersDetailsArray,
+  setSelectedChat,
+  searchUser,
+  setSelectedUserPic,
+}) => {
   const [loading, setLoading] = useState(false);
   const [chatsArray, setChatsArray] = useState([]);
   const [dataNotFound, setDataNotFound] = useState(false);
   const [avatarList, setAvatarList] = useState([]);
+
+  console.log(searchUser);
 
   const fetchChats = async () => {
     try {
@@ -37,6 +44,7 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
         );
         setUsersDetailsArray(currentUserDetails);
         console.log("NEEDEDuserDetailsArray :", chatsNeeded);
+
         setChatsArray(chatsNeeded);
       }
       setLoading(false);
@@ -60,9 +68,8 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
       if (chatDocSnapshot.exists()) {
         // chat exists between the users
         console.log("Chat exists with user:", otherUserID);
-        // set the selected chat ID
-        // setSelectedChat(chatId);
-        localStorage.setItem("chatID", chatId);
+
+        // localStorage.setItem("chatID", chatId);
         if (typeof setSelectedChat === "function") {
           setSelectedChat(chatId);
         } else {
@@ -75,14 +82,13 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
           otherUserID
         );
         await setDoc(chatDocRef, {});
-        // set the selected chat ID
-        localStorage.setItem("chatID", chatId);
+
+        // localStorage.setItem("chatID", chatId);
         if (typeof setSelectedChat === "function") {
           setSelectedChat(chatId);
         } else {
           console.error("setSelectedChat is not a function");
         }
-        // setSelectedChat(chatId);
       }
     } catch (error) {
       console.log("Error checking chat existence: ", error);
@@ -122,7 +128,15 @@ const Chats = ({ setUsersDetailsArray, setSelectedChat }) => {
             key={index}
             onClick={() => {
               checkChatExists(user.uid);
-              localStorage.setItem("chattingWith", user.name);
+              // localStorage.setItem("chattingWith", user.name);
+              // localStorage.setItem("selectedUserPic", avatarList[user.uid]);
+              localStorage.setItem(
+                "selectedUserDetails",
+                JSON.stringify({
+                  userName: user.name,
+                  userPic: avatarList[user.uid],
+                })
+              );
             }}
           >
             <img

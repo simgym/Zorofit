@@ -16,31 +16,25 @@ import { IoSend } from "react-icons/io5";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { IoChevronBack } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
-
-/*
-PROBLEM:
-
-The messages are public so if Anju text to Manav
-Aditya can see those texts because he is getting same user
-*/
+import { motion } from "framer-motion";
+import { FaImages } from "react-icons/fa";
+import { IoDocumentText } from "react-icons/io5";
 
 const Chat = ({ selectedChat, onBack }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [inputOptions, setInputOptions] = useState(false);
   const isSmallScreen = useMediaQuery("(max-width:768px)");
-  // const [selectedChatId, setSelectedChatId] = useState(null);
-  // const selectedChat = localStorage.getItem("chatID");
-  const chattingWith = localStorage.getItem("chattingWith");
+  const [rotation, setRotation] = useState(0);
+  const selectedUserDetails = JSON.parse(
+    localStorage.getItem("selectedUserDetails")
+  );
+  console.log("selectedUserPic is : ", selectedUserDetails.userPic);
   console.log(
     auth.currentUser.displayName,
     " is chatting with : ",
-    chattingWith
+    selectedUserDetails.userName
   );
-
-  // useEffect(() => {
-  //   setSelectedChatId(selectedChat);
-  //   console.log("SELECTED CHAT NID IN USEFFECT IS", selectedChatId);
-  // }, [selectedChat]);
 
   useEffect(() => {
     const fetchMessages = () => {
@@ -84,13 +78,14 @@ const Chat = ({ selectedChat, onBack }) => {
       }
 
       // add the message to the collection
-      await addDoc(newMessageRef, {
-        senderId: auth.currentUser.uid,
-        receiverId: selectedChat,
-        content: message,
-        timestamp: new Date(),
-      });
-
+      if (message.trim()) {
+        await addDoc(newMessageRef, {
+          senderId: auth.currentUser.uid,
+          receiverId: selectedChat,
+          content: message,
+          timestamp: new Date(),
+        });
+      }
       setMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
@@ -110,8 +105,15 @@ const Chat = ({ selectedChat, onBack }) => {
       {selectedChat && (
         <div className="convo-header">
           {isSmallScreen && <IoChevronBack onClick={() => onBack()} />}
-          <img src={defaultAvatar} alt="Avatar" />
-          <span>{chattingWith}</span>
+          <img
+            src={
+              selectedUserDetails.userPic
+                ? selectedUserDetails.userPic
+                : defaultAvatar
+            }
+            alt="Avatar"
+          />
+          <span>{selectedUserDetails.userName}</span>
         </div>
       )}
       <div className="conversation" id="conversation">
@@ -135,25 +137,53 @@ const Chat = ({ selectedChat, onBack }) => {
               </div>
             </div>
           ))}
-        {/* {!selectedChat && (
-          <div className="initial-zoro-chat">
-            <p>Find Your Fitness Friend</p>
-          </div>
-        )} */}
       </div>
+      {inputOptions && (
+        <div className="messageOptionsListWrapper">
+          <ul className="messageOptionsList">
+            <li
+              onClick={() => {
+                setInputOptions((prev) => !prev);
+                setRotation((prev) => prev + 45);
+              }}
+            >
+              <FaImages />
+              Img
+            </li>
+            <li
+              onClick={() => {
+                setInputOptions((prev) => !prev);
+                setRotation((prev) => prev + 45);
+              }}
+            >
+              <IoDocumentText />
+              Doc
+            </li>
+          </ul>
+        </div>
+      )}
       {selectedChat && (
         <div className="sendMessage">
           <form onSubmit={sendMessage}>
-            <button className="message-options">
+            <motion.button
+              type="button"
+              className="message-options"
+              onClick={() => {
+                setInputOptions((prev) => !prev);
+                setRotation((prev) => prev + 45);
+              }}
+              initial={{ rotate: "0deg" }}
+              animate={{ rotate: `${rotation}deg` }}
+            >
               <IoMdAdd />
-            </button>
+            </motion.button>
             <input
               type="text"
               placeholder="Type your message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <button type="submit">
+            <button type="submit" className="sendMessageButton">
               <IoSend />
             </button>
           </form>

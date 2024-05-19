@@ -6,7 +6,7 @@ const Navbar = ({ usersDetailsArray }) => {
   const navAvatar = localStorage.getItem("navAvatar");
   return (
     <div className="zoro-navbar">
-      <span className="zoro-logo">ZORO BUDDY</span>
+      <span className="zoro-logo">Chats</span>
 
       {/* {usersDetailsArray.map((user, index) => (
         <div className="zoro-user" key={index}>

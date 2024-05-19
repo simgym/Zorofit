@@ -65,10 +65,11 @@
   flex-direction: column;
   overflow-y: scroll;
   /* border: 1px solid red; */
+  position: relative;
 }
 .zoro-sidebar {
   flex: 1;
-  background-color: grey;
+  background-color: rgb(0, 0, 0);
   min-width: 0;
 }
 .yourMessages {
@@ -168,22 +169,27 @@
   padding: 0;
   border: none;
 }
+.sendMessage .sendMessageButton {
+  outline: none;
+}
 .sendMessage .message-options {
   background-color: transparent;
   color: white;
   /* border: 1px solid white; */
   font-size: 25px;
+  outline: none;
 }
 .zoro-navbar {
   display: flex;
   align-items: center;
-  background-color: rgb(55, 55, 55);
+  /* background-color: rgb(55, 55, 55); */
   height: 50px;
   padding: 10px;
   justify-content: space-between;
 }
 .zoro-navbar .zoro-logo {
   font-weight: bold;
+  font-size: 25px;
 }
 .zoro-navbar .zoro-user {
   display: flex;
@@ -199,21 +205,31 @@
 .zoro-user-search .zoro-searchForm {
   padding: 10px;
   /* border: 1px solid red; */
-  width: 100%;
+  width: 92%;
   display: flex;
   justify-content: flex-start;
+  /* border-bottom: 1px solid rgb(96, 96, 96); */
 }
 .zoro-user-search .zoro-searchForm input {
-  background-color: transparent;
-  color: rgb(0, 0, 0);
+  /* background-color: transparent;
+  color: rgb(255, 255, 255);
   border: none;
   border-bottom: 1px solid rgb(96, 96, 96);
   outline: none;
-  width: 90%;
+  width: 90%; */
+  /* cursor: pointer; */
+  height: 30px;
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  /* border: 1px solid grey; */
+  border: none;
+  padding-left: 10px;
+  background-color: rgb(43, 43, 43);
 }
-.zoro-user-search .zoro-searchForm input::placeholder {
+/* .zoro-user-search .zoro-searchForm input::placeholder {
   color: rgb(73, 73, 73);
-}
+} */
 
 .userChat {
   padding: 10px;
@@ -222,10 +238,10 @@
   gap: 10px;
   color: white;
   cursor: pointer;
-  border-bottom: 1px solid rgb(39, 39, 39);
+  border-bottom: 1px solid rgb(26, 26, 26);
 }
 .userChat:hover {
-  background-color: rgb(56, 56, 56);
+  background-color: rgb(26, 26, 26);
 }
 .userChat img {
   width: 50px;
@@ -259,12 +275,14 @@
 .convo-header {
   display: flex;
   align-items: center;
-  background-color: rgb(55, 55, 55);
+  /* background-color: rgb(55, 55, 55); */
+  background-color: rgb(25, 25, 25);
   height: 50px;
   padding: 10px;
   justify-content: flex-start;
   gap: 8px;
   margin-bottom: 10px;
+  /* border-left: 1px solid rgb(90, 90, 90); */
 }
 .convo-header img {
   background-color: black;
@@ -273,7 +291,48 @@
   border-radius: 50%;
   object-fit: cover;
 }
+/*--------------------------------------------------------*/
+/* .messageOptionsListWrapper {
+  background-color: #21db30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 4%;
+} */
 
+.messageOptionsList {
+  list-style: none;
+  /* background-color: aliceblue; */
+  /* background-color: rgb(43, 43, 43); */
+  background-color: rgb(219, 219, 219);
+  color: black;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  /* padding: 0; */
+  margin: 0;
+  margin-left: 6%;
+  position: absolute;
+  top: 600px;
+  border-radius: 10px;
+}
+
+.messageOptionsList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  border-radius: 10px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.messageOptionsList li:hover {
+  /* background-color: rgb(72, 72, 72); */
+  background-color: rgb(156, 156, 156);
+}
+/*--------------------------------------------------------*/
 @media (max-width: 425px) {
   .zoro-container {
     border-radius: 10px;
@@ -304,5 +363,86 @@
     flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
+    position: relative;
+  }
+  .messageOptionsList {
+    /* list-style: none;
+    background-color: aliceblue;
+    color: black; */
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* margin: 0; */
+    margin-left: 5%;
+    top: 686px;
+  }
+
+  .messageOptionsList li {
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+@media (min-width: 768px) {
+  .conversation {
+    position: relative;
+  }
+  .messageOptionsList {
+    /* list-style: none;
+    background-color: aliceblue;
+    color: black; */
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* margin: 0; */
+    margin-left: 1.5%;
+  }
+
+  .messageOptionsList li {
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+/* CSS for Tablets */
+@media (min-width: 426px) and (max-width: 767px) {
+  .conversation {
+    position: relative;
+  }
+  .messageOptionsList {
+    /* list-style: none;
+    background-color: aliceblue;
+    color: black; */
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* margin: 0; */
+    margin-left: 3.5%;
+    top: 695px;
+  }
+
+  .messageOptionsList li {
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 }
