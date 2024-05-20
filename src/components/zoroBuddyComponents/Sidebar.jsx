@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Search from "./Search";
 import Chats from "./Chats";
 
-const Sidebar = ({ setSelectedChat }) => {
+const Sidebar = ({ setSelectedChat, setSelectedUserPic }) => {
   const [usersDetailsArray, setUsersDetailsArray] = useState([]);
   const [searchUser, setSearchUser] = useState("");
 
@@ -15,6 +15,7 @@ const Sidebar = ({ setSelectedChat }) => {
         setUsersDetailsArray={setUsersDetailsArray}
         setSelectedChat={setSelectedChat}
         searchUser={searchUser}
+        setSelectedUserPic={setSelectedUserPic}
       />
     </div>
   );

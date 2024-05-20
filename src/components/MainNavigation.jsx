@@ -18,7 +18,7 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
   console.log("location is ", location);
 
   // let avatar = useSelector((state) => state.exerciseReducer.avatar);
-  const [avatar, setAvatar] = useState(defaultpic);
+  // const [avatar, setAvatar] = useState(defaultpic);
 
   const [isProfileClicked, setIsProfileClicked] = useState(false);
 
@@ -32,30 +32,30 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // setIsLoading(true);
-        if (auth.currentUser && auth.currentUser.uid) {
-          console.log("USER DISPLAY NAME : ", auth.currentUser.displayName);
-          const fileRef = ref(storage, auth.currentUser.uid + ".png");
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
 
-          if (fileRef) {
-            const photoURL = await getDownloadURL(fileRef);
-            console.log("PHOTOURL", photoURL);
-            setAvatar(photoURL);
-          }
-        }
-        // setIsLoading(false);
-      } catch (error) {
-        // Handle any errors here
-        setAvatar(defaultpic);
-        console.error("Error fetching avatar:", error);
-      }
-    };
+  //       if (auth.currentUser && auth.currentUser.uid) {
+  //         console.log("USER DISPLAY NAME : ", auth.currentUser.displayName);
+  //         const fileRef = ref(storage, auth.currentUser.uid + ".png");
 
-    fetchData(); // Call the async function
-  }, [auth.currentUser]);
+  //         if (fileRef) {
+  //           const photoURL = await getDownloadURL(fileRef);
+  //           console.log("PHOTOURL", photoURL);
+  //           setAvatar(photoURL);
+  //         }
+  //       }
+
+  //     } catch (error) {
+
+  //       setAvatar(defaultpic);
+  //       console.error("Error fetching avatar:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [auth.currentUser]);
 
   const exerciseHandler = () => {
     if (location.pathname == "/") {
@@ -130,7 +130,11 @@ const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
           <p>
             {auth.currentUser && (
               <img
-                src={avatar}
+                src={
+                  auth.currentUser.photoURL
+                    ? auth.currentUser.photoURL
+                    : defaultpic
+                }
                 onClick={() => setIsProfileClicked((prev) => !prev)}
               />
             )}

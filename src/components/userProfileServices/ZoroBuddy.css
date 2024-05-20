@@ -57,7 +57,7 @@
 .zoroChats {
   background-color: black;
   height: 595px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .conversation {
   flex: 4;
@@ -71,6 +71,7 @@
   flex: 1;
   background-color: rgb(0, 0, 0);
   min-width: 0;
+  overflow-y: scroll;
 }
 .yourMessages {
   /* background-color: white; */

@@ -1,7 +1,15 @@
 import React from "react";
+import { auth } from "../index";
+import defaultAvatar from "../assets/default.jpg";
 
 const About = () => {
-  return <div>About</div>;
+  console.log("Photo from auth : ", auth.currentUser.photoURL);
+  return (
+    <div>
+      {auth.currentUser.displayName}
+      <img src={auth.currentUser.photoURL} />
+    </div>
+  );
 };
 
 export default About;
