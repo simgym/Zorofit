@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import MainNavigation from "../components/MainNavigation";
 
 const RootLayout = (props) => {
-  console.log("scrollToSection prop in RootLayout:", props.scrollToSection);
+  // console.log("scrollToSection prop in RootLayout:", props.scrollToSection);
 
   return (
     <>

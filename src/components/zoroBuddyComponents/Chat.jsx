@@ -29,12 +29,12 @@ const Chat = ({ selectedChat, onBack }) => {
   const selectedUserDetails = JSON.parse(
     localStorage.getItem("selectedUserDetails")
   );
-  console.log("selectedUserPic is : ", selectedUserDetails.userPic);
-  console.log(
-    auth.currentUser.displayName,
-    " is chatting with : ",
-    selectedUserDetails.userName
-  );
+  // console.log("selectedUserPic is : ", selectedUserDetails.userPic);
+  // console.log(
+  //   auth.currentUser.displayName,
+  //   " is chatting with : ",
+  //   selectedUserDetails.userName
+  // );
 
   useEffect(() => {
     const fetchMessages = () => {

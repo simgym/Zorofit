@@ -21,8 +21,8 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
-  let it = 0;
-  console.log(it + 1);
+  // let it = 0;
+  // console.log(it + 1);
   const homeRef = useRef(null);
   const programRef = useRef(null);
   const membershipRef = useRef(null);

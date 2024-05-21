@@ -11,11 +11,11 @@ import "./MainNavigation.css";
 
 const MainNavigation = ({ scrollToSection, homeRef, programRef }) => {
   let it = 0;
-  console.log("scrollToSection prop in MainNavigation:", scrollToSection, ++it);
+  // console.log("scrollToSection prop in MainNavigation:", scrollToSection, ++it);
 
   let location = useLocation();
 
-  console.log("location is ", location);
+  // console.log("location is ", location);
 
   // let avatar = useSelector((state) => state.exerciseReducer.avatar);
   // const [avatar, setAvatar] = useState(defaultpic);
