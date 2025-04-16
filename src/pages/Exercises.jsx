@@ -1,19 +1,38 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Shimmer from "../skeletons/Shimmer";
 import { auth, db } from "../index";
 import { doc, setDoc } from "firebase/firestore";
 import "./Exercises.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
+// check the code Youtube API is giving too many responses
+
 const Exercises = () => {
-  let type = useSelector((state) => state.exerciseReducer.type);
+  const type = useSelector((state) => state.exerciseReducer.type);
   const [muscle, setMuscle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [exerciseData, setExerciseData] = useState([]);
   const [exerciseVideos, setExerciseVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingVideo, setLoadingVideo] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Cache for YouTube video URLs
+  const [videoCache, setVideoCache] = useState({});
+
+  useEffect(() => {
+    if (!localStorage.getItem("youtubeApiCallCount")) {
+      localStorage.setItem("youtubeApiCallCount", 0);
+    }
+  }, []);
+
+  const incrementApiCallCount = () => {
+    let count = parseInt(localStorage.getItem("youtubeApiCallCount"), 10);
+    count += 1;
+    localStorage.setItem("youtubeApiCallCount", count);
+    console.log("YouTube API call count:", count);
+  };
 
   const muscleList = [
     "Shoulders",
@@ -36,49 +55,55 @@ const Exercises = () => {
 
   const workoutDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-  // useEffect(() => {
-  //   const fetchVideos = async () => {
-  //     setLoadingVideo(true);
-  //     const exVideos = [];
+  const fetchVideoUrl = async (exerciseName) => {
+    if (videoCache[exerciseName]) {
+      return videoCache[exerciseName];
+    }
 
-  //     if (exerciseData.length === 10) {
-  //       for (let i = 0; i < exerciseData.length && i < 10; i++) {
-  //         const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${
-  //           exerciseData[i].name
-  //         }&key=${import.meta.env.VITE_youtube_key}`;
+    const youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${exerciseName}&key=${
+      import.meta.env.VITE_youtube_key
+    }`;
+    try {
+      const response = await fetch(youtubeUrl, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Something is wrong with the YouTube API");
+      }
+      const data = await response.json();
+      const videoId = data.items[0].id.videoId;
+      const videoUrl = `https://www.youtube.com/embed/${videoId}`;
+      setVideoCache((prevCache) => ({
+        ...prevCache,
+        [exerciseName]: videoUrl,
+      }));
+      incrementApiCallCount();
+      return videoUrl;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
-  //         try {
-  //           const response = await fetch(youtubeUrl, {
-  //             method: "GET",
-  //             headers: {
-  //               Accept: "application/json",
-  //             },
-  //           });
+  const fetchVideos = async (data) => {
+    setLoadingVideo(true);
+    const exVideos = await Promise.all(
+      data.map(async (exerciseItem) => {
+        const videoUrl = await fetchVideoUrl(exerciseItem.name);
+        return videoUrl;
+      })
+    );
+    setExerciseVideos(exVideos);
+    setLoadingVideo(false);
+  };
 
-  //           if (!response.ok) {
-  //             throw new Error("Something is wrong with the YouTube API");
-  //           }
-
-  //           const data = await response.json();
-  //           const videoId = data.items[0].id.videoId;
-  //           const videoUrl = `https://www.youtube.com/embed/${videoId}`;
-  //           exVideos.push(videoUrl);
-  //         } catch (error) {
-  //           console.log(error);
-  //         }
-  //       }
-  //     }
-  //     setExerciseVideos(exVideos);
-  //     setLoadingVideo(false);
-  //   };
-
-  //   fetchVideos();
-  // }, [exerciseData]);
-
-  const trainingData = async () => {
+  const fetchTrainingData = async () => {
     setLoading(true);
+    setError(null);
     const url = `https://api.api-ninjas.com/v1/exercises?type=${type}&muscle=${muscle}&difficulty=${difficulty}`;
-
     try {
       const response = await fetch(url, {
         method: "GET",
@@ -87,26 +112,61 @@ const Exercises = () => {
           "Content-Type": "application/json",
         },
       });
-
       if (!response.ok) {
         throw new Error("Something is wrong with the exercise API");
       }
-
       const data = await response.json();
+      console.log("data for trainingData API is : ", data);
       setExerciseData(data);
+      if (data.length > 0) {
+        fetchVideos(data);
+      }
     } catch (error) {
       console.log(error);
+      setError("Failed to load exercises.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   useEffect(() => {
-    trainingData();
+    fetchTrainingData();
   }, [type, muscle]);
+
+  const handleDaySelection = async (selectedDay, exerciseItem, index) => {
+    if (auth.currentUser) {
+      if (selectedDay) {
+        const userDocRef = doc(
+          db,
+          "users",
+          auth.currentUser.uid,
+          selectedDay,
+          exerciseItem.name
+        );
+        try {
+          await setDoc(userDocRef, {
+            instructions: exerciseItem.instructions,
+            video: exerciseVideos[index],
+            muscle: exerciseItem.muscle,
+            type: exerciseItem.type,
+            difficulty: exerciseItem.difficulty,
+            name: exerciseItem.name,
+            equipment: exerciseItem.equipment,
+          });
+        } catch (error) {
+          console.log("Error adding document: ", error);
+        }
+      } else {
+        window.alert("Select a day");
+      }
+    } else {
+      window.alert("Login to add exercise or select a day");
+    }
+  };
 
   return (
     <main className="exercise-wrapper">
+      {error && <p className="error">{error}</p>}
       <div className="parameter-wrapper">
         <select
           className="muscle-wrapper"
@@ -121,8 +181,7 @@ const Exercises = () => {
 
       <div className="exercise-content">
         {loading && <Shimmer cards={15} />}
-
-        {exerciseData.length === 0 && (
+        {exerciseData.length === 0 && !loading && (
           <li className="exercise-content-item">
             <div className="exercise-namuent">
               <span className="exercise-details-heading">
@@ -134,39 +193,10 @@ const Exercises = () => {
 
         {exerciseData.map((exerciseItem, index) => (
           <li key={index} className="exercise-content-item">
-            <select // for adding exercise to a day
-              onChange={(e) => {
-                const selectedDay = e.target.value;
-                // logic to add exercise data for the selected day
-                if (auth.currentUser) {
-                  console.log(
-                    "currently logged in user is",
-                    auth.currentUser.displayName
-                  );
-                  if (selectedDay) {
-                    const userDocRef = doc(
-                      db,
-                      "users",
-                      `${auth.currentUser.uid}`,
-                      selectedDay,
-                      `${exerciseItem.name}`
-                    );
-                    setDoc(userDocRef, {
-                      instructions: exerciseItem.instructions,
-                      video: "https://www.youtube.com/watch?v=9pSu_v4E-Ck", // this is dummy video for styling workout planner
-                      muscle: exerciseItem.muscle,
-                      type: exerciseItem.type,
-                      difficulty: exerciseItem.difficulty,
-                      name: exerciseItem.name,
-                      equipment: exerciseItem.equipment,
-                    });
-                  } else {
-                    window.alert("Select a day");
-                  }
-                } else {
-                  window.alert("Login to add exercise or select a day");
-                }
-              }}
+            <select
+              onChange={(e) =>
+                handleDaySelection(e.target.value, exerciseItem, index)
+              }
             >
               <option value="">+</option>
               {workoutDays.map((day, index) => (
@@ -204,9 +234,7 @@ const Exercises = () => {
               <span className="instructions">
                 <h4>INSTRUCTIONS</h4>
                 <p>
-                  {exerciseItem.instructions
-                    ? exerciseItem.instructions
-                    : "Instructions not available"}
+                  {exerciseItem.instructions || "Instructions not available"}
                 </p>
               </span>
               <span className="exercise-form">

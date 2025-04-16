@@ -64,10 +64,11 @@ const Signup = () => {
       const userDocRef = doc(db, "users", "all users", "userDetails", userId);
       await setDoc(userDocRef, {
         name: signupName || user.displayName,
-        about: "",
         uid: userId,
-        gymName: "",
-        trainerName: "",
+        gymCrush: "",
+        bio: "",
+        city: "",
+        country: "",
       });
 
       console.log("USER DATA IS SET");

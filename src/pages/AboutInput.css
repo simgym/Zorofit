@@ -1,0 +1,232 @@
+.aboutInputWrapper {
+  border: 1px solid white;
+  width: 100%;
+  padding: 15px;
+  border-radius: 20px;
+  background-color: black;
+  position: fixed; /* Keep fixed positioning */
+  top: 50%; /* Move to the vertical center */
+  left: 50%; /* Move to the horizontal center */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Center the element both vertically and horizontally */
+  /* max-width: 500px; */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+.inputFavMuscles,
+.inputGymPlaylist,
+.inputGymExperience {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 20px;
+}
+.favMusclesLabelAddWrapper,
+.playlistLablAddWrapper,
+.gymExppLabelAddWrapper {
+  /* border: 1px solid yellow; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.favMusclesLabelAddWrapper button,
+.playlistLablAddWrapper button,
+.gymExppLabelAddWrapper button {
+  background-color: black;
+  border: 1px solid white;
+}
+.favMusclesLabelAddWrapper button:hover,
+.playlistLablAddWrapper button:hover,
+.gymExppLabelAddWrapper button:hover {
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+}
+.favMusclesInputWrapper,
+.playlistInputWrapper {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+.favMusclesInputWrapper input,
+.playlistInputWrapper input,
+.gymExpInputWrapper input,
+.bioTextWrapper input,
+.gymCrushInputWrapper input,
+.inputWeightWrapper input,
+.inputHeightWrapper input {
+  outline: none;
+  background-color: transparent;
+  border: 1px solid grey;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.gymExpInputWrapper input[type="date"] {
+  color: grey;
+}
+
+/*----------------------------------*/
+/* .inputGymPlaylist {
+  border: 1px solid yellow;
+}
+.playlistLablAddWrapper {
+  border: 1px solid pink;
+}
+.playlistInputWrapper {
+  border: 1px solid red;
+} */
+.inputGymExperience {
+  /* border: 1px solid yellow; */
+}
+.gymExpFieldsWrapper {
+  /* border: 1px solid green; */
+  width: 100%;
+}
+.gymExpInputWrapper {
+  /* border: 1px solid blue; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 10px;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.inputBio {
+  /* border: 1px solid orange; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding-top: 20px;
+}
+.bioLabelWrapper,
+.gymCrushLabelWrapper,
+.inputGymMethodLabelWrapper,
+.labelHeightWrapper,
+.labelWeightWrapper {
+  /* border: 1px solid pink; */
+  flex: 1;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+.bioLabelWrapper label {
+  /* border: 1px solid red; */
+}
+.bioTextWrapper,
+.gymCrushInputWrapper,
+.gymMethodSelectWrapper,
+.inputWeightWrapper,
+.inputHeightWrapper {
+  /* border: 1px solid rgb(0, 255, 47); */
+  flex: 1.5;
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+}
+.bioTextWrapper input,
+.gymCrushInputWrapper input,
+.inputWeightWrapper input,
+.inputHeightWrapper input {
+  width: 100%;
+}
+.inputGymCrush,
+.inputGymMethod,
+.inputWeight,
+.inputHeight {
+  /* border: 1px solid red; */
+  display: flex;
+  padding-top: 20px;
+  align-items: center;
+}
+.gymMethodSelectWrapper select {
+  width: 100%;
+  outline: none;
+  background-color: black;
+  border: 1px solid grey;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: rgb(150, 150, 150);
+}
+.gymMethodSelectWrapper select::placeholder {
+  color: grey;
+}
+.aboutInputButtonWrapper {
+  /* border: 1px solid yellow; */
+  display: flex;
+  justify-content: flex-end;
+  gap: 2%;
+  padding-top: 20px;
+}
+.aboutInputButtonWrapper button {
+  background-color: #24d800;
+  color: black;
+  width: 20%;
+  border: 1px solid transparent;
+}
+.aboutInputButtonWrapper button[type="button"] {
+  background-color: transparent;
+  color: #24d800;
+  border: 1px solid #24d800;
+}
+.aboutInputButtonWrapper button[type="button"]:hover {
+  background-color: rgb(200, 3, 3);
+  color: white;
+  border-color: transparent;
+}
+.aboutInputButtonWrapper button[type="submit"]:hover {
+  border: 1px solid transparent;
+  background-color: #1eb600;
+}
+.inputWeightHeight {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputWeight {
+  padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .aboutInputWrapper {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .aboutInputWrapper {
+    min-width: 250px;
+    margin-top: 20px;
+  }
+  .gymExpInputWrapper {
+    grid-template-columns: 1fr;
+  }
+  .aboutInputButtonWrapper {
+    padding-top: 15px;
+    /* flex-direction: column; */
+    gap: 10px;
+  }
+  .aboutInputButtonWrapper button {
+    width: 100%;
+  }
+}
+@media (max-width: 425px) {
+  .aboutInputButtonWrapper {
+    padding-top: 15px;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

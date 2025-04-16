@@ -9,6 +9,7 @@ import {
   query,
   orderBy,
   onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 import "../userProfileServices/ZoroBuddy.css";
 import defaultAvatar from "../../assets/default.jpg";
@@ -100,20 +101,30 @@ const Chat = ({ selectedChat, onBack }) => {
     }
   }, [messages]);
 
+  // for blocking by deleting chat permanently
+  // const blockUserHandler = async () => {
+  //   await deleteDoc(doc(db, "userChats", selectedChat));
+  // };
+
   return (
     <div className={selectedChat ? "zoro-chat" : "noChatYet"}>
       {selectedChat && (
         <div className="convo-header">
-          {isSmallScreen && <IoChevronBack onClick={() => onBack()} />}
-          <img
-            src={
-              selectedUserDetails.userPic
-                ? selectedUserDetails.userPic
-                : defaultAvatar
-            }
-            alt="Avatar"
-          />
-          <span>{selectedUserDetails.userName}</span>
+          <span className="convoHeaderDetails">
+            {" "}
+            {isSmallScreen && <IoChevronBack onClick={() => onBack()} />}
+            <img
+              src={
+                selectedUserDetails.userPic
+                  ? selectedUserDetails.userPic
+                  : defaultAvatar
+              }
+              alt="Avatar"
+            />
+            <span>{selectedUserDetails.userName}</span>
+          </span>
+          {/* <button onClick={blockUserHandler}>Block</button> */}
+          <button>About</button>
         </div>
       )}
       <div className="conversation" id="conversation">

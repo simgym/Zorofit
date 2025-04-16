@@ -15,6 +15,7 @@ const Chats = ({
   const [chatsArray, setChatsArray] = useState([]);
   const [dataNotFound, setDataNotFound] = useState(false);
   const [avatarList, setAvatarList] = useState([]);
+  const [nameList, setNameList] = useState([]);
 
   console.log(searchUser);
 
@@ -42,6 +43,7 @@ const Chats = ({
         const currentUserDetails = chats.filter(
           (item) => item.uid == auth.currentUser.uid
         );
+
         setUsersDetailsArray(currentUserDetails);
         console.log("NEEDEDuserDetailsArray :", chatsNeeded);
 
@@ -119,9 +121,20 @@ const Chats = ({
     fetchAvatars();
   }, []);
 
+  useEffect(() => {
+    if (chatsArray) {
+      const searchedNames = chatsArray.filter((item) =>
+        item.name.toLowerCase().includes(searchUser.toLowerCase())
+      );
+      setNameList(searchedNames);
+      console.log(searchedNames, searchUser);
+    }
+  }, [searchUser]);
+
   return (
     <div className="zoroChats">
       {!dataNotFound &&
+        !searchUser &&
         chatsArray.map((user, index) => (
           <div
             className="userChat"
@@ -149,6 +162,35 @@ const Chats = ({
             </div>
           </div>
         ))}
+      {searchUser &&
+        nameList.map((user, index) => (
+          <div
+            className="userChat"
+            key={index}
+            onClick={() => {
+              checkChatExists(user.uid);
+              // localStorage.setItem("chattingWith", user.name);
+              // localStorage.setItem("selectedUserPic", avatarList[user.uid]);
+              localStorage.setItem(
+                "selectedUserDetails",
+                JSON.stringify({
+                  userName: user.name,
+                  userPic: avatarList[user.uid],
+                })
+              );
+            }}
+          >
+            <img
+              src={avatarList[user.uid] ? avatarList[user.uid] : defaultAvatar}
+              alt="img"
+            />
+            <div className="userChatInfo">
+              <span>{user.name}</span>
+              <p>Hello</p>
+            </div>
+          </div>
+        ))}
+      {searchUser && !nameList.length && <h2>Not Found</h2>}
     </div>
   );
 };
